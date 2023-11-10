@@ -1,0 +1,33 @@
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.scroll') theme('colors.gray-100');
+  }
+  
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  *::-webkit-scrollbar-track:horizontal {
+    background: theme('colors.black');
+  }
+  *::-webkit-scrollbar-track:vertical {
+    background: theme('colors.gray-100');
+  }
+  *::-webkit-scrollbar-thumb {
+    border-radius: 14px;
+  }
+  *::-webkit-scrollbar-thumb:horizontal {
+    background-color: theme('colors.scroll');
+    border: 3px solid theme('colors.black');
+  }
+  *::-webkit-scrollbar-thumb:vertical {
+    background-color: theme('colors.scroll');
+    border: 3px solid theme('colors.gray-100');
+  }
+
+  

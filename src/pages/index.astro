@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContentSection from "../components/content-section.astro";
+import Card from "../components/Card.astro";
+import { Image } from 'astro:assets';
+import { Icon } from "astro-icon";
+import { getCollection } from 'astro:content';
+import scriptogreLogo from '../assets/logo-scriptogre.webp';
+const allSocials = await getCollection('socials')
+const allAboutText = await getCollection('about')
+const allCardInfo = await getCollection('cards')
+const allClientsInfo = await getCollection('clients')
+---
+
+<Layout title="Scriptogres">
+	 <main class="xl:max-w-[1200px] xl:ms-auto xl:me-auto xl:flex xl:justify-center xl:items-stretch xl:gap-6
+	 			  lg:mb-14 sm:mt-14 sm:mb-24 my-3.5 mx-3 min-w-[259px] block">
+		<aside class="bg-black max-h-[405px] p-3.5 mb-3.5 rounded border border-solid border-slate sm:p-7
+					  sm:max-h-[584px] sm:mb-7 sm:gap-6 xl:sticky xl:top-14 xl:h-full xl:mb-0 xl:pt-14 z-50">
+			<div class="relative flex justify-start items-center gap-3.5 xl:flex-col">
+				<Image src={ scriptogreLogo } alt="Scriptogres logo" class="rounded-3xl w-20 sm:w-32 xl:w-36" />
+				<div>
+					<h1 class="mb-2.5 sm:mb-4 text-white text-base font-semibold sm:text-2xl
+							   xl:whitespace-nowrap	xl:text-center xl:text-2xl xl:mt-2" title="ScriptOgre"> ScriptOgre</h1>
+					<p class="font-medium text-white text-xs bg-gray-300 text-center
+							  rounded-lg py-0.5 px-3 sm:py-1.5 sm:px-4 sm:text-sm xl:m-auto">Web Design</p>
+				</div>
+			</div>
+			<div class="xl:w-52">
+				<hr class="my-4 text-gray-100 h-px sm:my-8">
+				<ul class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-y-8 md:gap-x-4 xl:grid-cols-1">
+					<li class="min-w-full flex items-center gap-4 sm:gap-5">
+						<div class="bg-gradient-to-br from-card-primary to-card-secondary border-light shadow-card rounded-xl p-2 sm:p-4">
+							<Icon name=envelope class="h-4 text-light-gray" />
+						</div>
+						<div class="text-xs overflow-hidden sm:max-w-[calc(100% - 64px)] xl:max-w-">
+							<p class="text-light mb-0.5">EMAIL</p>
+							<a href="mailto:tanulchristian@gmail.com" class="text-white sm:text-base xl:text-sm
+									xl:font-light xl:whitespace-nowrap text-ellipsis truncate block">scriptogre@pyoneers.dev</a>
+						</div>
+					</li>
+					<li class="min-w-full flex items-center gap-4">
+						<div class="bg-gradient-to-br from-card-primary to-card-secondary border-light shadow-card rounded-xl p-2 sm:p-4">
+							<Icon name=phone class="h-4 text-light-gray" />
+						</div>
+						<div class="text-xs overflow-hidden sm:max-w-[calc(100% - 64px)] xl:max-w-full">
+							<p class="text-light mb-0.5">PHONE</p>
+							<a href="tel:+40748916932" class="text-white sm:text-base xl:text-sm
+							xl:font-light xl:whitespace-nowrap text-ellipsis block">+40 748 916 932</a>
+						</div>
+					</li>
+				</ul>
+				<hr class="my-4 text-gray-100 h-px sm:mt-8 xl:opacity-0 xl:my-2">
+				<ul class="flex items-center justify-start pb-1 gap-4 xl:justify-center">
+					{
+						allSocials.map((social) => (
+						<li class="list-none">
+							<a href={ social.data.url }>
+								<Icon name={ social.data.name } class="h-6" />
+							</a>
+						</li>
+						))
+					}
+				</ul>
+			</div>
+		</aside>
+		<ContentSection title="About Us">
+			<Fragment slot="text">
+				{
+					allAboutText.map((text) => (
+						<p class="text-light leading-snug font-light mb-4">{ text.data.content }</p>
+					))
+				}
+			</Fragment>
+			<Fragment slot="sub-section">
+				<h3 class="text-xl sm:text-2xl font-bold text-white sm:mt-10 mb-5">What We're Doing</h3>
+				<div class="grid lg:grid-cols-2 gap-5 lg:gap-x-5 sm:gap-y-6">
+					{
+						allCardInfo.map((card) => (
+							<Card icon={ card.data.icon }
+								  title={ card.data.title }
+							 	  body={ card.data.body }	/>
+						))
+					}
+				</div>
+			</Fragment>
+			<Fragment slot="sub-section">
+				<h3 class="text-xl sm:text-2xl font-bold text-white mt-10 mb-5">Clients</h3>
+				<div class="flex justify-start items-start sm:gap-12 gap-4 my-0 mx-[-10px] sm:mx-[-27px]
+				 			scroll-pe-6 scroll-ps-6 sm:scroll-pe-11 sm:scroll-ps-11 p-6 sm:p-11 overflow-x-auto scroll-smooth">
+					{
+						allClientsInfo.map((image) => (
+							<div class="lg:min-w-[calc(25%-38px)] sm:min-w-[calc(50%-35px)]
+							 min-w-[calc(50%-35px)] snap-start">
+							 	<Image src={ image.data.cover } alt={ image.data.coverAlt } />
+							</div>
+						))
+					}
+				</div>
+			</Fragment>
+		  </ContentSection>
+	</main>
+</Layout>
