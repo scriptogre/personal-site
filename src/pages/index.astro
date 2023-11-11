@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ContentSection from "../components/content-section.astro";
 import Card from "../components/Card.astro";
+import Button from "../components/button.astro"
 import { Image } from 'astro:assets';
 import { Icon } from "astro-icon";
 import { getCollection } from 'astro:content';
@@ -15,8 +16,8 @@ const allClientsInfo = await getCollection('clients')
 <Layout title="Scriptogres">
 	 <main class="xl:max-w-[1200px] xl:ms-auto xl:me-auto xl:flex xl:justify-center xl:items-stretch xl:gap-6
 	 			  lg:mb-14 sm:mt-14 sm:mb-24 my-3.5 mx-3 min-w-[259px] block">
-		<aside class="bg-black max-h-[405px] p-3.5 mb-3.5 rounded border border-solid border-slate sm:p-7
-					  sm:max-h-[584px] sm:mb-7 sm:gap-6 xl:sticky xl:top-14 xl:h-full xl:mb-0 xl:pt-14 z-50">
+		<aside id="sidebar" class="sidebar active xl:max-h-[584px] bg-black max-h-[112px] p-3.5 mb-3.5 rounded border border-solid border-slate sm:p-7
+					  sm:max-h-[180px] sm:mb-7 sm:gap-6 xl:sticky xl:top-14 xl:mb-0 xl:pt-14 z-50">
 			<div class="relative flex justify-start items-center gap-3.5 xl:flex-col">
 				<Image src={ scriptogreLogo } alt="Scriptogres logo" class="rounded-3xl w-20 sm:w-32 xl:w-36" />
 				<div>
@@ -25,8 +26,14 @@ const allClientsInfo = await getCollection('clients')
 					<p class="font-medium text-white text-xs bg-gray-300 text-center
 							  rounded-lg py-0.5 px-3 sm:py-1.5 sm:px-4 sm:text-sm xl:m-auto">Web Design</p>
 				</div>
+				<div class="absolute sm:hidden top-[-14px] right-[-14px]">
+					<Button title="&#8964" />
+				</div>
+				<div class="absolute hidden sm:block xl:hidden top-[-28px] right-[-28px]">
+					<Button title="Show Contacts" />
+				</div>
 			</div>
-			<div class="xl:w-52">
+			<div id="content" class="xl:w-52 opacity-100 transition ease-in-out duration-300">
 				<hr class="my-4 text-gray-100 h-px sm:my-8">
 				<ul class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-y-8 md:gap-x-4 xl:grid-cols-1">
 					<li class="min-w-full flex items-center gap-4 sm:gap-5">

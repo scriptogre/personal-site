@@ -29,5 +29,19 @@
     background-color: theme('colors.scroll');
     border: 3px solid theme('colors.gray-100');
   }
-
-  
+  .sidebar.active {
+    max-height: 405px;
+  }
+  @media (min-width: 580px) {
+    .sidebar.active {
+      max-height: 584px;
+    }
+  }
+  #sidebar:not(.active) #content {
+    opacity: 0; /* Set the reduced opacity when the sidebar is not active */
+  }
+  @media (min-width: 1250px) {
+    #sidebar:not(.active) #content {
+      opacity: 1;
+    }
+  }
