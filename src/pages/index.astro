@@ -99,7 +99,10 @@ const allClientsInfo = await getCollection('clients')
 						allClientsInfo.map((image) => (
 							<div class="lg:min-w-[calc(25%-38px)] sm:min-w-[calc(50%-35px)]
 							 min-w-[calc(50%-35px)] snap-start">
-							 	<Image src={ image.data.cover } alt={ image.data.coverAlt } />
+								<a href={ image.data.url }>
+									<Image src={ image.data.cover } alt={ image.data.coverAlt } 
+										   class="grayscale hover:grayscale-0 transition ease-in-out duration-200" />
+								</a>
 							</div>
 						))
 					}
