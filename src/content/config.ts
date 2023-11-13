@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const clientCollection = defineCollection({
+const clientLogoCollection = defineCollection({
   schema: ({ image }) => 
   z.object({
     url: z.string(),
@@ -9,6 +9,18 @@ const clientCollection = defineCollection({
   }),
 });
 
+const clientPortfolioCollection = defineCollection({
+  schema: ({ image }) => 
+  z.object({
+    title: z.string(),
+    category: z.string(),
+    description: z.string(),
+    gif: image(),
+    coverPhoto: image(),
+  }),
+});
+
 export const collections = {
-  clients: clientCollection,
+  clientsLogos: clientLogoCollection,
+  clientsPortfolio: clientPortfolioCollection,
 };

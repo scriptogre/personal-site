@@ -11,6 +11,7 @@ export default {
 		},
 		colors: {
 		  'gray-100': '#535A5B', // background
+		  'gray-200': '#383838', // portfolio button background
 		  'gray-300': '#2B2B2C', // web design logo
 		  'gray-500': '#282829', // button background
 		  'light-gray': '#929B9C',
@@ -24,7 +25,7 @@ export default {
 		  'scroll': '#949D9E', // scroll bar color
 		},
 		fontFamily: {
-		  sans: ['Poppins', 'sans-serif'],
+			'poppins': ['Poppins', 'sans-serif'],
 		},
 		boxShadow: {
 			DEFAULT: '-4px 8px 24px hsla(0, 0%, 0%, 0.25);',
