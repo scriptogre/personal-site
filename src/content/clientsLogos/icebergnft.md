@@ -1,5 +1,5 @@
 ---
 url: https://www.icebergnft.com/
-cover: "../../assets/client-logo-icebergnft.webp"
+cover: "../../assets/images/client-logo-icebergnft.webp"
 coverAlt: IceBergNFT logo
 ---
