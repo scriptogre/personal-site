@@ -21,18 +21,26 @@
 
 
 <script>
-  function toggleActive(activate, deactivate) {
+  function toggleActive(activate: string, deactivate: string) {
     const activateComponent = document.getElementById(activate);
     const deactivateComponent = document.getElementById(deactivate);
-    activateComponent.classList.add('active');
-    deactivateComponent.classList.remove('active');
+    if(activateComponent && deactivateComponent){
+      activateComponent.classList.add('active');
+      deactivateComponent.classList.remove('active');
+    }
   }
 
-  document.getElementById('aboutBtn').addEventListener('click', function () {
-    toggleActive('about', 'portfolio');
-  });
+  const aboutBtn = document.getElementById('aboutBtn');
+  if (aboutBtn) {
+    aboutBtn.addEventListener('click', function () {
+      toggleActive('about', 'portfolio');
+    });
+  }
 
-  document.getElementById('portfolioBtn').addEventListener('click', function () {
-    toggleActive('portfolio', 'about');
-  });
+  const portfolioBtn = document.getElementById('portfolioBtn');
+  if (portfolioBtn) {
+    portfolioBtn.addEventListener('click', function () {
+      toggleActive('portfolio', 'about');
+    });
+  }
 </script>

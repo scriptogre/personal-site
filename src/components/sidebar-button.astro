@@ -5,19 +5,31 @@ export interface Props {
 
 const { title } = Astro.props;
 ---
-<button class="z-10 p-2.5 bg-gradient-to-br from-card-primary to-card-secondary
+<button id="toggleButton" class="z-10 p-2.5 bg-gradient-to-br from-card-primary to-card-secondary
               rounded-tr rounded-bl shadow-xl animate__bounceIn text-light-gray border border-solid
-              border-slate text-xs hover:from-gray-300" onclick="toggleDivSize()">
+              border-slate text-xs hover:from-gray-300">
   { title }
 </button>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('toggleButton');
 
-<script context="module">
-     function toggleDivSize() {
-        const div = document.getElementById('sidebar');
-        div.classList.toggle('active');
+    if (toggleButton) {
+      toggleButton.addEventListener('click', function () {
+        toggleDivSize();
+      });
     }
+
+    function toggleDivSize() {
+      const div = document.getElementById('sidebar');
+      if (div) {
+        div.classList.toggle('active');
+      }
+    }
+  });
 </script>
+
 
 <style>
       @-webkit-keyframes bounceIn {

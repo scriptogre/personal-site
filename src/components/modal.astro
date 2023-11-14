@@ -27,14 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const modals = Array.from({ length: openModalBtns.length }, (_, index) => document.getElementById(`modal${index}`));
 
     // Function to open the modal
-    function openModal(index) {
-        modals[index].style.display = 'flex';
+    function openModal(index: number) {
+        const modal = modals[index];
+        if (modal) {
+            modal.style.display = 'flex';
+        }
     }
 
     // Function to close the modal
-    function closeModal(index) {
-        modals[index].style.display = 'none';
-    }
+    function closeModal(index: number) {
+        const modal = modals[index];
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }          
 
     // Event listeners for each 'open' button
     openModalBtns.forEach((btn, index) => {
