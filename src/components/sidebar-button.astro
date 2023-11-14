@@ -5,12 +5,12 @@ export interface Props {
 
 const { title } = Astro.props;
 ---
-<button class="rounded-tr
-bg-gradient-to-br from-card-primary to-card-secondary rounded-bl
-p-2.5 shadow-card z-10 animate__bounceIn text-light-gray border border-solid border-slate
-text-xs hover:from-gray-300" onclick="toggleDivSize()">
-    { title }
+<button class="z-10 p-2.5 bg-gradient-to-br from-card-primary to-card-secondary
+              rounded-tr rounded-bl shadow-xl animate__bounceIn text-light-gray border border-solid
+              border-slate text-xs hover:from-gray-300" onclick="toggleDivSize()">
+  { title }
 </button>
+
 
 <script context="module">
      function toggleDivSize() {

@@ -7,62 +7,57 @@ import scriptogreLogo from '../assets/images/logo-scriptogre.webp';
 const allSocials = await getCollection('socials')
 ---
 
-<aside id="sidebar" class="sidebar active xl:max-h-[584px] bg-black max-h-[112px] p-3.5 mb-3.5 rounded border border-solid border-slate sm:p-7
-					  sm:max-h-[180px] sm:mb-7 sm:gap-6 xl:sticky xl:top-14 xl:mb-0 xl:pt-14 z-40">
-			<div class="relative flex justify-start items-center gap-3.5 xl:flex-col">
-				<Image src={ scriptogreLogo } alt="Scriptogres logo" class="rounded-3xl w-20 sm:w-32 xl:w-36" />
-				<div class="xl:text-center">
-					<h1 class="text-white text-base font-semibold sm:text-2xl
-							   xl:whitespace-nowrap xl:text-2xl xl:mt-2" title="The Script Ogres">The Script Ogres</h1>
-					<p class="mb-2.5 sm:mb-4 text-xs text-light-gray">
-					Sleek Sites, WordPress Excluded</p>
-					<p class="inline-block font-light text-white text-xs bg-gray-300 text-center
-							  rounded-lg py-0.5 px-3 sm:py-1.5 sm:px-4 xl:m-auto">Web Design</p>
-				</div>
-				<div class="absolute sm:hidden top-[-14px] right-[-14px]">
-					<Button title="&#8964" />
-				</div>
-				<div class="absolute hidden sm:block xl:hidden top-[-28px] right-[-28px]">
-					<Button title="Show Contacts" />
-				</div>
-			</div>
-			<div id="content" class="xl:w-52 opacity-100 transition ease-in-out duration-300">
-				<hr class="my-4 text-gray-100 h-px sm:my-8">
-				<ul class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-y-8 md:gap-x-4 xl:grid-cols-1">
-					<li class="min-w-full flex items-center gap-4 sm:gap-5">
-						<div class="bg-gradient-to-br from-card-primary to-card-secondary border-light shadow-card rounded-xl p-2 sm:p-4">
-							<Icon name=envelope class="h-4 text-light-gray" />
-						</div>
-						<div class="text-xs overflow-hidden sm:max-w-[calc(100% - 64px)] xl:max-w-">
-							<p class="text-light-gray mb-0.5">EMAIL</p>
-							<a href="mailto:tanulchristian@gmail.com" class="text-white sm:text-base xl:text-sm
-									xl:font-light xl:whitespace-nowrap text-ellipsis truncate block">contact@scriptogres.dev</a>
-						</div>
-					</li>
-					<li class="min-w-full flex items-center gap-4">
-						<div class="bg-gradient-to-br from-card-primary to-card-secondary border-light shadow-card rounded-xl p-2 sm:p-4">
-							<Icon name=phone class="h-4 text-light-gray" />
-						</div>
-						<div class="text-xs overflow-hidden sm:max-w-[calc(100% - 64px)] xl:max-w-full">
-							<p class="text-light-gray mb-0.5">PHONE</p>
-							<a href="tel:+40750437014" class="text-white sm:text-base xl:text-sm
-							xl:font-light xl:whitespace-nowrap text-ellipsis block">+40 750 437 014</a>
-							<a href="tel:+40748916932" class="text-white sm:text-base xl:text-sm
-							xl:font-light xl:whitespace-nowrap text-ellipsis block">+40 748 916 932</a>
-						</div>
-					</li>
-				</ul>
-				<hr class="my-4 text-gray-100 h-px sm:mt-8 xl:opacity-0 xl:my-2">
-				<ul class="flex items-center justify-start pb-1 gap-4 xl:justify-center">
-					{
-						allSocials.map((social) => (
-						<li class="list-none">
-							<a href={ social.data.url }>
-								<Icon name={ social.data.name } class="h-6" />
-							</a>
-						</li>
-						))
-					}
-				</ul>
-			</div>
-		</aside>
+<aside id="sidebar" class="sidebar active z-40 xl:sticky xl:top-14 xl:mb-0 xl:pt-14 overflow-hidden xl:overflow-visible transition-max-h ease-in-out duration-500 
+  						max-h-[112px] xl:max-h-[584px] bg-black p-3.5 mb-3.5 rounded border border-solid border-slate sm:p-7
+					  		sm:max-h-[180px] sm:mb-7 sm:gap-6 shadow-2xl">
+	<div class="flex relative xl:flex-col justify-start items-center gap-3.5">
+	<Image src={ scriptogreLogo } alt="Scriptogres logo" class="w-20 sm:w-32 xl:w-36 rounded-3xl" />
+	<div class="xl:text-center">
+		<h1 class="text-base font-semibold sm:text-2xl xl:text-2xl xl:mt-2 whitespace-nowrap text-white" title="The Script Ogres">The Script Ogres</h1>
+		<p class="text-xs text-light-gray mb-2.5 sm:mb-4">Sleek Sites, WordPress Excluded</p>
+		<p class="inline-block text-white text-xs bg-gray-300 text-center rounded-lg py-0.5 px-3 sm:py-1.5 sm:px-4 xl:m-auto font-light">Web Design</p>
+	</div>
+	<div class="absolute sm:hidden top-[-14px] right-[-14px]">
+		<Button title="&#8964" />
+	</div>
+	<div class="absolute hidden sm:block xl:hidden top-[-28px] right-[-28px]">
+		<Button title="Show Contacts" />
+	</div>
+	</div>
+	<div id="content" class="xl:w-52 opacity-100 transition ease-in-out duration-300 delay-300">
+	<hr class="my-4 text-gray-100 h-px sm:my-8">
+	<ul class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-y-8 md:gap-x-4 xl:grid-cols-1">
+		<li class="min-w-full flex items-center gap-4 sm:gap-5">
+		<div class="bg-gradient-to-br from-card-primary to-card-secondary border-light shadow-xl rounded-xl p-2 sm:p-4">
+			<Icon name=envelope class="h-4 text-light-gray" />
+		</div>
+		<div class="text-xs overflow-hidden sm:max-w-[calc(100% - 64px)] xl:max-w-">
+			<p class="text-light-gray mb-0.5">EMAIL</p>
+			<a href="mailto:tanulchristian@gmail.com" class="text-white sm:text-base xl:text-sm font-light whitespace-nowrap text-ellipsis truncate block">contact@scriptogres.dev</a>
+		</div>
+		</li>
+		<li class="min-w-full flex items-center gap-4">
+		<div class="bg-gradient-to-br from-card-primary to-card-secondary border-light shadow-xl rounded-xl p-2 sm:p-4">
+			<Icon name=phone class="h-4 text-light-gray" />
+		</div>
+		<div class="text-xs overflow-hidden sm:max-w-[calc(100% - 64px)] xl:max-w-full">
+			<p class="text-light-gray mb-0.5">PHONE</p>
+			<a href="tel:+40750437014" class="text-white sm:text-base xl:text-sm font-light whitespace-nowrap text-ellipsis block">+40 750 437 014</a>
+			<a href="tel:+40748916932" class="text-white sm:text-base xl:text-sm font-light whitespace-nowrap text-ellipsis block">+40 748 916 932</a>
+		</div>
+		</li>
+	</ul>
+	<hr class="my-4 text-gray-100 h-px sm:mt-8 xl:opacity-0 xl:my-2">
+	<ul class="flex items-center justify-start pb-1 gap-4 xl:justify-center">
+		{
+		allSocials.map((social) => (
+		<li class="list-none">
+			<a href={ social.data.url }>
+			<Icon name={ social.data.name } class="h-6" />
+			</a>
+		</li>
+		))
+		}
+	</ul>
+	</div>		
+</aside>

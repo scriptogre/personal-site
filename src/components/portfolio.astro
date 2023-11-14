@@ -8,25 +8,25 @@ const allClientsInfo = await getCollection('clientsPortfolio')
 ---
 <ContentSection title="Portfolio">
     <Fragment slot="sub-section">
-        <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 mb-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 mb-3">
             {
                 allClientsInfo.map((object, index) => (
                 <figure class="">
-                    <div class="openModal relative overflow-hidden rounded-xl mb-3.5 bg-black group">
+                    <div class="relative overflow-hidden rounded-xl mb-3.5 bg-black openModal group">
                         <Image
                             src={object.data.coverPhoto}
                             alt={object.data.title}
-                            class="rounded-xl w-full h-52 xs:h-auto cursor-pointer hover:scale-110 hover:opacity-30 transition duration-300 object-cover"
+                            class="w-full h-52 xs:h-auto rounded-xl cursor-pointer hover:scale-110 hover:opacity-30 transition duration-300 object-cover"
                         />
-                        <button class="absolute top-1/2 left-1/2 bg-gray-200 p-4 rounded-xl
-                                        transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100
-                                        transition duration-300 pointer-events-none">
+                        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                                bg-gray-200 p-4 rounded-xl opacity-0 group-hover:opacity-100
+                                transition duration-300 pointer-events-none">
                             <Icon name=eye class="h-5 text-light-gray" />
                         </button>
                     </div>
                     <Modal id={`modal${index}`} gif={object.data.gif} title={object.data.title} description={object.data.description} />
-                    <h3 class="text-md text-white ms-2">{ object.data.title }</h3>
-                    <p class="text-md text-light-gray ms-2">{ object.data.category }</p>
+                    <h3 class="ms-2 text-md text-white">{ object.data.title }</h3>
+                    <p class="ms-2 text-md text-light-gray">{ object.data.category }</p>
                 </figure>
                 ))
 

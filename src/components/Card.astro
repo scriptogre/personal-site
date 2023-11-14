@@ -8,13 +8,13 @@ interface Props {
 const { icon, title, body } = Astro.props;
 ---
 
-<li class="relative border bg-gradient-to-br from-card-primary to-card-secondary
-		   block sm:flex sm:gap-5 p-5 sm:p-8 rounded-xl shadow-card">
-	<div class="mb-3 mt-0 sm:mt-5 sm:mb-0 flex justify-center text-light-gray">
+<li class="relative block sm:flex sm:gap-5 p-5 sm:p-8 rounded-xl border bg-gradient-to-br
+		 from-card-primary to-card-secondary shadow-xl">
+	<div class="flex justify-center mb-3 mt-0 sm:mt-5 sm:mb-0 text-light-gray">
 		<Icon name={ icon } class="h-12 " />
 	</div>
-	<div class="text-center sm:text-left">
-		<p class="mb-2 text-lg text-white font-bold">{ title }</p>
-		<p class="text-light leading-relaxed font-light">{ body }</p>
+	<div class="sm:text-left text-center">
+		<p class="font-bold text-lg text-white mb-2">{ title }</p>
+		<p class="font-light text-light leading-relaxed">{ body }</p>
 	</div>
 </li>

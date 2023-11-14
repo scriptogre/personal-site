@@ -27,10 +27,6 @@ export default {
 		fontFamily: {
 			'poppins': ['Poppins', 'sans-serif'],
 		},
-		boxShadow: {
-			DEFAULT: '-4px 8px 24px hsla(0, 0%, 0%, 0.25);',
-			'card': '0 16px 30px hsla(0, 0%, 0%, 0.25);',
-		},
 		extend: {	
 		  borderRadius: {
 			DEFAULT: '20px',

@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/sidebar.astro"
+import Navbar from "../components/navbar.astro"
+---
+
+<Layout title="Scriptogres">
+	<main class="mx-3 my-3.5 min-w-[259px] transition-max-w ease-in-out duration-500 sm:mx-auto sm:mt-14 sm:mb-24
+				lg:mb-14 xl:flex xl:flex-row xl:justify-center xl:items-stretch xl:gap-6 lg:max-w-5xl md:max-w-2xl sm:max-w-lg
+				xl:max-w-[1200px] xl:ms-auto xl:me-auto">
+		<Sidebar />		
+		<article class="relative bg-black p-3.5 sm:p-7 rounded border border-solid border-slate shadow-2xl">
+			<Navbar transition:animate="none" />
+			<slot name="content" />
+		</article>
+	</main>
+</Layout>
