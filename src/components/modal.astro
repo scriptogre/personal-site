@@ -20,54 +20,56 @@ const closeId = `${id}Close`;
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Get the buttons and create a mapping of button index to modal
-    const openModalBtns = document.querySelectorAll('.openModal');
-    const closeModalBtns = document.querySelectorAll('.closeModal');
-    const modals = Array.from({ length: openModalBtns.length }, (_, index) => document.getElementById(`modal${index}`));
+    document.addEventListener('astro:page-load', initializeModals);
+    document.addEventListener('astro:after-swap', initializeModals);
+    function initializeModals(){
+        // Get the buttons and create a mapping of button index to modal
+        const openModalBtns = document.querySelectorAll('.openModal');
+        const closeModalBtns = document.querySelectorAll('.closeModal');
+        const modals = Array.from({ length: openModalBtns.length }, (_, index) => document.getElementById(`modal${index}`));
 
-    // Function to open the modal
-    function openModal(index: number) {
-        const modal = modals[index];
-        if (modal) {
-            modal.style.display = 'flex';
+        // Function to open the modal
+        function openModal(index: number) {
+            const modal = modals[index];
+            if (modal) {
+                modal.style.display = 'flex';
+            }
         }
-    }
 
-    // Function to close the modal
-    function closeModal(index: number) {
-        const modal = modals[index];
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }          
+        // Function to close the modal
+        function closeModal(index: number) {
+            const modal = modals[index];
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }          
 
-    // Event listeners for each 'open' button
-    openModalBtns.forEach((btn, index) => {
-        btn.addEventListener("click", () => openModal(index));
-    });
+        // Event listeners for each 'open' button
+        openModalBtns.forEach((btn, index) => {
+            btn.addEventListener("click", () => openModal(index));
+        });
 
-    // Event listeners for each 'close' button
-    closeModalBtns.forEach((btn, index) => {
-        btn.addEventListener('click', () => closeModal(index));
-    });
+        // Event listeners for each 'close' button
+        closeModalBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => closeModal(index));
+        });
 
-    // Close the modal if the user clicks outside the modal content
-    window.addEventListener('click', function (event) {
-        modals.forEach((modal, index) => {
-            if (event.target === modal) {
-                closeModal(index);
+        // Close the modal if the user clicks outside the modal content
+        window.addEventListener('click', function (event) {
+            modals.forEach((modal, index) => {
+                if (event.target === modal) {
+                    closeModal(index);
+                }
+            });
+        });
+
+        // Close the modal if the user presses the 'Escape' key
+        window.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                modals.forEach((modal, index) => {
+                    closeModal(index);
+                });
             }
         });
-    });
-
-    // Close the modal if the user presses the 'Escape' key
-    window.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-            modals.forEach((modal, index) => {
-                closeModal(index);
-            });
-        }
-    });
-});
+    };
 </script>
