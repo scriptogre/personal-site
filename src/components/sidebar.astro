@@ -52,7 +52,7 @@ const allSocials = await getCollection('socials')
 		{
 		allSocials.map((social) => (
 		<li class="list-none">
-			<a href={ social.data.url }>
+			<a href={ social.data.url } aria-label={ social.data.name }>
 			<Icon name={ social.data.name } class="h-6" />
 			</a>
 		</li>
