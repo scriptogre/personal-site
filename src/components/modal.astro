@@ -20,8 +20,7 @@ const closeId = `${id}Close`;
 </div>
 
 <script>
-    document.addEventListener('astro:page-load', initializeModals);
-    document.addEventListener('astro:after-swap', initializeModals);
+    document.addEventListener('DOMContentLoaded', initializeModals);
     function initializeModals(){
         // Get the buttons and create a mapping of button index to modal
         const openModalBtns = document.querySelectorAll('.openModal');
