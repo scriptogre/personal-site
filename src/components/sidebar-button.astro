@@ -12,7 +12,6 @@ const { title } = Astro.props;
 </button>
 
 <script>
-	document.addEventListener('astro:after-swap', OpenModal);
 	document.addEventListener('DOMContentLoaded', OpenModal);
 	function OpenModal(){
 	  const buttons = document.querySelectorAll('.toggleButton');

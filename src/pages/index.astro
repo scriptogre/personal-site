@@ -1,9 +1,23 @@
 ---
-import Page from "../components/pagetemplate.astro"
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/sidebar.astro"
 import About from "../components/about.astro"
+import Portfolio from "../components/portfolio.astro"
+import Navbar from "../components/navbar.astro"
 ---
-<Page>
-	<Fragment slot="content">
-		<About />
-	</Fragment>
-</Page>
+
+<Layout title="Scriptogres">
+	 <main class="xl:max-w-[1200px] xl:ms-auto xl:me-auto xl:flex xl:justify-center xl:items-stretch xl:gap-6
+	 			  lg:mb-14 sm:mt-14 sm:mb-24 mb-24 my-3.5 mx-3 min-w-[259px] block" >
+		<Sidebar />
+		<article class="relative bg-black p-4 rounded border border-solid border-slate sm:p-7">
+			<Navbar />
+			<div id="about" class="transition-opacity ease-in-out duration-700">
+				<About />
+			  </div>
+			  <div id="portfolio" class="hidden opacity-0 transition-opacity ease-in-out duration-700">
+				<Portfolio />
+			  </div>			  
+		</article>
+	</main>
+</Layout>
