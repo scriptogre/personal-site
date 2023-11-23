@@ -3,7 +3,7 @@
   lg:w-max sm:rounded-tr lg:rounded-bl lg:rounded-tl-none lg:px-5">
   <ul class="flex flex-wrap justify-center px-2.5 sm:gap-5 lg:gap-7 lg:px-5">
     <li class="list-none">
-      <button id="aboutBtn" class="py-5 px-1.5 text-light-gray text-xs sm:text-sm md:text-base md:font-medium hover:text-light transition ease-in-out duration-200">
+      <button id="aboutBtn" class="py-5 px-1.5 text-light-gray text-white text-xs sm:text-sm md:text-base md:font-medium hover:text-light transition ease-in-out duration-200">
         About
       </button>
     </li>
@@ -17,32 +17,31 @@
 
 
 <script>
+  const portfolioBtn = document.getElementById('portfolioBtn');
+  const aboutBtn = document.getElementById('aboutBtn');
   function toggleActive(activate: string, deactivate: string) {
     const activateComponent = document.getElementById(activate);
     const deactivateComponent = document.getElementById(deactivate);
-    if(activateComponent && deactivateComponent){
-      deactivateComponent.classList.add('hidden');
-      setTimeout(function () {
-        deactivateComponent.classList.add('opacity-0');
-      }, 20);
-      activateComponent.classList.remove('hidden');
-      setTimeout(function () {
-        activateComponent.classList.remove('opacity-0');
-      }, 20);
-    }
+    deactivateComponent?.classList.add('hidden');
+    setTimeout(function () {
+      deactivateComponent?.classList.add('opacity-0');
+    }, 20);
+    activateComponent?.classList.remove('hidden');
+    setTimeout(function () {
+      activateComponent?.classList.remove('opacity-0');
+    }, 20);
   }
-
-  const aboutBtn = document.getElementById('aboutBtn');
-  if (aboutBtn) {
-    aboutBtn.addEventListener('click', function () {
+  function btnClass(activateBtn: HTMLElement, deactivateBtn: HTMLElement) {
+    activateBtn.classList.add('text-white');
+    deactivateBtn.classList.remove('text-white');
+  }
+  aboutBtn?.addEventListener('click', function () {
       toggleActive('about', 'portfolio');
-    });
-  }
+      btnClass(aboutBtn, portfolioBtn!);
+  });
 
-  const portfolioBtn = document.getElementById('portfolioBtn');
-  if (portfolioBtn) {
-    portfolioBtn.addEventListener('click', function () {
+  portfolioBtn?.addEventListener('click', function () {
       toggleActive('portfolio', 'about');
-    });
-  }
+      btnClass(portfolioBtn, aboutBtn!);
+  });
 </script>

@@ -7,18 +7,20 @@ import Navbar from "../components/navbar.astro"
 ---
 
 <Layout title="Scriptogres">
-	 <main class="mx-3 my-3.5 min-w-[259px] sm:mx-auto sm:mt-14 sm:mb-24
-				lg:mb-14 xl:flex xl:flex-row xl:justify-center xl:items-stretch xl:gap-6 lg:max-w-5xl md:max-w-2xl sm:max-w-lg
-				xl:max-w-[1200px] xl:ms-auto xl:me-auto" >
-		<Sidebar />
-		<article class="relative bg-black p-4 rounded border border-solid border-slate sm:p-7">
-			<Navbar />
-			<div id="about" class="transition-opacity ease-in-out duration-700">
-				<About />
-			  </div>
-			  <div id="portfolio" class="hidden opacity-0 transition-opacity ease-in-out duration-700">
-				<Portfolio />
-			  </div>			  
-		</article>
+	 <main>
+		<div class="min-w-[259px] lg:max-w-4xl md:max-w-2xl sm:max-w-lg xl:max-w-6xl  
+		xl:flex xl:flex-row xl:justify-center xl:items-stretch xl:gap-6 xl:ms-auto xl:me-auto mx-3 my-3.5 sm:mx-auto sm:mt-14 mb-24
+		lg:mb-14">
+			<Sidebar />
+			<article class="relative bg-black rounded border border-solid border-slate p-6 sm:p-8">
+				<Navbar />
+				<div id="about" class="transition-opacity ease-in-out duration-700">
+					<About />
+				  </div>
+				  <div id="portfolio" class="hidden opacity-0 transition-opacity ease-in-out duration-700">
+					<Portfolio />
+				  </div>			  
+			</article>
+		</div>
 	</main>
 </Layout>

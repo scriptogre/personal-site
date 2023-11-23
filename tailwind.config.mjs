@@ -10,22 +10,27 @@ export default {
 		  xl: '1250px',
 		},
 		colors: {
-		  'gray-100': '#535A5B', // background
-		  'gray-200': '#383838', // portfolio button background
-		  'gray-300': '#2B2B2C', // web design logo
-		  'gray-500': '#282829', // button background
-		  'light-gray': '#929B9C',
-		  'black': '#1E1E1F', // big card background
-		  'slate': '#383838', // border 
-		  'light-slate': '#939D9F', // small shape under heading
-		  'white': '#FAFAFA', // heading 
-		  'light': '#d1d1d1', // text
-		  'card-primary': '#232325', // card primary
-		  'card-secondary': '#202022', // card secondary
-		  'scroll': '#949D9E', // scroll bar color
-		},
+			'gray-100': 'hsl(0, 0%, 7%)', // background
+			'gray-200': 'hsl(0, 0%, 22%)', // portfolio button background
+			'gray-300': 'hsl(240, 2%, 16%)', // web design logo
+			'gray-500': 'hsl(240, 2%, 15%)', // button background
+			'light-gray': 'hsl(180, 4%, 59%)',
+			'light-gray-70': 'hsl(0, 0%, 22%)',
+			'icon-light': 'hsla(0, 0%, 84%, 0.7)', // icon color
+			'light-gray-90': 'hsl(0, 0%, 84%)', // icon hover color
+			'light-gray-100': 'hsl(0, 0%, 80%);',
+			'black': 'hsl(240, 2%, 12%)', // big card background
+			'slate': 'hsl(0, 0%, 22%)',
+			'onyx': 'hsl(240, 1%, 17%);',
+			'light-slate': 'hsl(90, 3%, 62%)', // small shape under heading
+			'white': 'hsl(0, 0%, 98%)', // heading
+			'light': 'hsl(0, 0%, 82%)', // text
+			'scroll': 'hsl(0, 0%, 16%);',
+			'scroll-border': 'hsl(0, 0%, 25%);',
+			'scroll-hover': 'hsl(0, 0%, 35%);',
+		  },		  
 		fontFamily: {
-			'poppins': ['Poppins', 'sans-serif'],
+			'sans': ['Poppins', 'sans-serif'],
 		},
 		extend: {	
 		  borderRadius: {
