@@ -78,7 +78,7 @@ To enrich The Script Ogres website with new content, follow these straightforwar
    /src
    ├── assets
        ├── images
-       |    ├── image1.png
+       |    ├── image1.webp
        |
        └── gifs
             ├── gif1.gif

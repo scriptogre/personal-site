@@ -16,9 +16,20 @@
   
   *::-webkit-scrollbar-track {
     border-radius: 5px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  @media (min-width: 580px) {
+    *::-webkit-scrollbar-track {
+      margin-left: 80px;
+      margin-right: 80px;
+    }
   }
   *::-webkit-scrollbar-track:horizontal {
-    background: theme('colors.black');
+    background: theme('colors.scroll');
+    border: 6px solid theme('colors.black');
   }
   *::-webkit-scrollbar-track:vertical {
     background: theme('colors.gray-100');
@@ -27,19 +38,25 @@
     border-radius: 14px;
   }
   *::-webkit-scrollbar-thumb:horizontal {
-    background-color: theme('colors.scroll');
-    border: 3px solid theme('colors.black');
+    background-color: theme('colors.light-slate');
+    border: 6px solid theme('colors.black');
   }
   *::-webkit-scrollbar-thumb:vertical {
     background-color: theme('colors.scroll');
-    border: 3px solid theme('colors.gray-100');
+    outline: 2px solid theme('colors.gray-100');
+    border: 3px solid theme('colors.scroll-border');
+    outline-offset: -2px;
+  }
+  *::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: theme('colors.scroll-border');
+    border: 3px solid theme('colors.scroll-hover');
   }
   .sidebar.active {
     max-height: 405px;
   }
   @media (min-width: 580px) {
     .sidebar.active {
-      max-height: 584px;
+      max-height: 600px;
     }
   }
   #sidebar:not(.active) #content {
@@ -50,4 +67,19 @@
       opacity: 1;
     }
   }
-  
+  .card-item {
+    position: relative;
+    background: linear-gradient( to bottom right, hsl(0, 0%, 25%) 0%, hsla(0, 0%, 25%, 0) 50% );
+    z-index: 1;
+}
+  .card-item::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: linear-gradient( to bottom right, hsla(240, 1%, 18%, 0.251) 0%, hsla(240, 2%, 11%, 0) 100% ), hsl(240, 2%, 13%);
+    border-radius: inherit;
+    z-index: -1;
+}
+.svgFilter {
+  filter: invert(75%) sepia(2%) saturate(1619%) hue-rotate(42deg) brightness(89%) contrast(85%);
+}
