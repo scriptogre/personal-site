@@ -7,6 +7,4 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://scriptogre.github.io/',
-  output: "server",
-  adapter: vercel()
 });
