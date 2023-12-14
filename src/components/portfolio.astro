@@ -24,7 +24,7 @@ const allClientsInfo = await getCollection('clientsPortfolio')
                             <Icon name=eye class="h-5 text-light-gray" />
                         </button>
                     </div>
-                    <Modal id={`modal${index}`} gif={object.data.gif} title={object.data.title} description={object.data.description} />
+                    <Modal id={`modal${index}`} video={object.data.video} title={object.data.title} description={object.data.description} />
                     <h3 class="ms-2 text-md text-white">{ object.data.title }</h3>
                     <p class="ms-2 text-md text-light-gray">{ object.data.category }</p>
                 </figure>

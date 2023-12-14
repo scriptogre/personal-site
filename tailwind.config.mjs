@@ -14,6 +14,7 @@ export default {
 			'gray-200': 'hsl(0, 0%, 22%)', // portfolio button background
 			'gray-300': 'hsl(240, 2%, 16%)', // web design logo
 			'gray-500': 'hsl(240, 2%, 15%)', // button background
+			'lime-700': '#4d7c0f',
 			'light-gray': 'hsl(180, 4%, 59%)',
 			'light-gray-70': 'hsl(0, 0%, 22%)',
 			'icon-light': 'hsla(0, 0%, 84%, 0.7)', // icon color

@@ -15,7 +15,7 @@ const clientPortfolioCollection = defineCollection({
     title: z.string(),
     category: z.string(),
     description: z.string(),
-    gif: image(),
+    video: z.string(),
     coverPhoto: image(),
   }),
 });
