@@ -81,7 +81,7 @@
     z-index: -1;
 }
 .svgFilter {
-  filter: invert(65%) sepia(8%) saturate(2100%) hue-rotate(60deg) brightness(89%) contrast(85%);
+  filter: invert(60%) sepia(8%) saturate(2100%) hue-rotate(60deg) brightness(80%) contrast(85%);
 }
 
 
