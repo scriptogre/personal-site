@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+const { class: classList } = Astro.props;
+---
+
+<div class:list={["flex text-sm gap-3", classList]}>
+  <a
+    target="_blank"
+    href="https://www.linkedin.com/in/christian-tanul-94333a17a/">
+    <Icon name="ri:linkedin-fill" class="size-5" />
+  </a>
+  <a target="_blank" href="https://github.com/scriptogre">
+    <Icon name="ri:github-fill" class="size-5" />
+  </a>
+  <a
+    target="_blank"
+    href="https://stackoverflow.com/users/22652799/christian-tanul">
+    <Icon name="ri:stack-overflow-fill" class="size-5" />
+  </a>
+  <a target="_blank" href="https://twitter.com/scriptogre">
+    <Icon name="ri:twitter-fill" class="size-5" />
+  </a>
+
+  <div class="dropdown dropdown-end">
+    <div tabindex="0" role="button">
+      <Icon name="ri:external-link-fill" class="size-5" />
+    </div>
+    <ul tabindex="0" class="dropdown-content z-[1] w-52 rounded-xl bg-zinc-100/95 p-4 px-8 space-y-2 shadow-xl text-sm">
+      <li>
+        <a href="https://pyoneers.dev" class="inline-flex items-center gap-1">
+          <span>pyoneers.dev</span>
+          <Icon name="ri:external-link-fill" class="size-4" />
+        </a>
+      </li>
+      <li>
+        <a href="https://scriptogres.dev" class="inline-flex items-center gap-1">
+          <span>scriptogres.dev</span>
+          <Icon name="ri:external-link-fill" class="size-4" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

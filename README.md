@@ -3,27 +3,34 @@
 ## Description
 
 ### About Us
+
 Welcome to the heart of **ScriptOgres**, where passion seamlessly intertwines with code. As a small yet dynamic team of developers, we are on a mission to redefine web design. At ScriptOgres, we go beyond the ordinary, crafting websites that are not just functional but exude their own unique personality.
 
 ### Our Commitment
+
 #### Beyond the Ordinary
+
 Say farewell to generic landing pages built with uninspiring WordPress themes. At ScriptOgres, we're committed to pushing the boundaries of conventional web design to deliver something extraordinary.
 
 #### Crafted with Care
+
 Every line of code in this repository is a testament to our dedication. We believe in crafting websites that not only look good but also provide seamless and enjoyable user experiences.
 
 ### What You'll Find Here
+
 #### Cutting-Edge Tech
+
 Dive into the world of the latest technologies. This repository showcases our use of cutting-edge tools such as Astro, Svelte, TailwindCSS, and more. We're not just keeping up with the trends; we're setting them.
 
 #### Passionate Development
+
 Our love for what we do shines through in every commit. From design elements to functionality, we've poured our passion into every aspect of this project.
 
 ### Get Involved
+
 Feel free to explore our code, share your thoughts, and contribute to the evolution of our website. Whether you're a fellow developer, a designer, or someone who appreciates the artistry of web development, we invite you to join us on this journey.
 
 Because great websites are made with a blend of innovation, passion, and a touch of magic.
-
 
 ## Installation
 
@@ -33,7 +40,7 @@ To run The Script Ogres locally, follow these steps:
 
 ```bash
 git clone https://github.com/eliasrestea/scriptogres.git
-cd scriptogres
+cd christian-tanul
 ```
 
 ### 2. Install Dependencies
@@ -72,17 +79,17 @@ To enrich The Script Ogres website with new content, follow these straightforwar
 
 ### 1. Images and GIFs:
 
-   - Place an image and GIF associated with your project in the `src/assets` directory. Organize them appropriately to maintain a clean project structure.
+- Place an image and GIF associated with your project in the `src/assets` directory. Organize them appropriately to maintain a clean project structure.
 
-   ```plaintext
-   /src
-   ├── assets
-       ├── images
-       |    ├── image1.webp
-       |
-       └── gifs
-            ├── gif1.gif
-   ```
+```plaintext
+/src
+├── assets
+    ├── images
+    |    ├── image1.webp
+    |
+    └── gifs
+         ├── gif1.gif
+```
 
 ### 2. Markdown Files:
 
@@ -96,7 +103,7 @@ Include essential details about your project using Markdown syntax. Here's an ex
 ---
 title: Cryptoheads
 category: Web design
-description: This was the foremost important collection released by IceBergNFT and required an especially distinct-looking page. The client was very satisfied with the design, and so was I.   
+description: This was the foremost important collection released by IceBergNFT and required an especially distinct-looking page. The client was very satisfied with the design, and so was I.
 gif: "../../assets/gifs/portfolio-cryptoheads.gif"
 coverPhoto: "../../assets/images/portfolio-cryptoheads.webp"
 ---

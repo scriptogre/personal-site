@@ -1,0 +1,15 @@
+---
+import CallToAction from "@components/CallToAction.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<aside
+  class="flex flex-col items-center gap-12 border-b border-t border-[#e3e6ee] bg-[#FFFFFF66] p-20 pb-12 pt-12 shadow-sm lg:flex lg:flex-row lg:flex-wrap lg:justify-between lg:px-28 lg:py-28">
+  <h2 class="max-w-[15ch] text-center text-4xl lg:text-left lg:text-3xl">
+    Interested in working together?
+  </h2>
+  <CallToAction href="mailto:recruiter@example.com">
+    Send Me a Message
+    <Icon name="ri:send-plane-fill" class="size-3" />
+  </CallToAction>
+</aside>
