@@ -1,8 +1,8 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 
-import "@fontsource-variable/rubik";
 import "../styles/global.css";
+import { AstroFont } from "astro-font";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
@@ -17,13 +17,37 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-
     <link rel="icon" type="image/svg+xml" href="/christian-tanul-logo.webp" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
-      rel="stylesheet"
+    <AstroFont
+      config={[
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: "Rubik Variable",
+          fallback: "sans-serif",
+          cssVariable: "font-rubik-variable",
+          googleFontsURL: 'https://fonts.googleapis.com/css2?family=Rubik:wght@300..900',
+        },
+        {
+          src: [],
+          name: "Rubik",
+          preload: false,
+          display: "swap",
+          fallback: "sans-serif",
+          cssVariable: "font-rubik",
+          googleFontsURL: 'https://fonts.googleapis.com/css2?family=Rubik:wght@500;600',
+        },
+        {
+          src: [],
+          preload: false,
+          display: "swap",
+          name: "Public Sans",
+          fallback: "sans-serif",
+          cssVariable: "font-public-sans",
+          googleFontsURL: 'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400',
+        },
+      ]}
     />
     <ViewTransitions />
   </head>
