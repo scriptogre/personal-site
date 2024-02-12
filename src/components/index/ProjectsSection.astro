@@ -1,0 +1,56 @@
+---
+import ProjectPreview from "./ProjectPreview.astro";
+import GridProjects from "../Grid.astro";
+---
+
+<section id="projects" class="mb-24">
+  <div
+    class="flex max-w-md flex-col items-center justify-center gap-2 text-center max-lg:mx-auto lg:items-start lg:gap-4 lg:text-start"
+  >
+    <h3 class="text-3xl font-semibold">Projects</h3>
+    <p class="text-zinc-800/90">
+      Here are some of the projects I've worked on recently.
+    </p>
+  </div>
+
+  <GridProjects>
+    <ProjectPreview
+      title="Active Learning"
+      description="The presentation website of a spanish course provider."
+      img={{
+        src: "/altm-preview.webp",
+        alt: "Active Learning Timisoara Preview",
+      }}
+    />
+
+    <ProjectPreview
+      title="The Pyoneer Project"
+      description="A platform that provides free resources for full-stack developers."
+      href="https://pyoneers.dev/"
+      img={{
+        src: "/pyoneers-preview.webp",
+        alt: "Pyoneers Dev Website Preview",
+      }}
+    />
+
+    <ProjectPreview
+      title="Cosmetica Auto TM"
+      description="The presentation website of a car detailing service."
+      href="https://cosmeticaautotm.ro/"
+      img={{
+        src: "/cosmeticaautotm-preview.webp",
+        alt: "Cosmetica Auto TM Preview",
+      }}
+    />
+
+    <ProjectPreview
+      title="IcebergNFT"
+      description="A crypto art marketplace for digital artists."
+      href="https://icebergnft.com/"
+      img={{
+        src: "/icebergnft-preview.webp",
+        alt: "IcebergNFT Preview",
+      }}
+    />
+  </GridProjects>
+</section>

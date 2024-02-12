@@ -1,0 +1,47 @@
+---
+const { title, description, href, img } = Astro.props;
+
+const Element = !!href ? "a" : "div";
+---
+
+<Element {href} target="_blank" class="rounded-3xl bg-black">
+  <div
+    class="group relative flex h-fit flex-col items-center justify-center rounded-3xl transition-all hover:shadow-md lg:-translate-x-2 lg:-translate-y-2 lg:hover:-translate-y-4 lg:active:translate-x-0 lg:active:translate-y-0"
+  >
+    <div
+      class="absolute z-10 h-full w-full rounded-3xl bg-zinc-100/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+    >
+      <div
+        class="flex h-full w-full flex-col items-center justify-center text-center"
+      >
+        <span class="flex items-center text-3xl text-zinc-900">
+          {title}
+          <svg
+            class="-mr-1 ml-2 mt-0.5 stroke-[currentColor] stroke-2"
+            fill="none"
+            width="11"
+            height="11"
+            viewBox="0 0 10 10"
+            aria-hidden="true"
+          >
+            <path d="M0 5h7"></path>
+            <path class="translate-x-[3px]" d="M1 1l4 4-4 4"></path>
+          </svg>
+        </span>
+        <span class="text-md mt-2 text-zinc-900/90">
+          {description}
+        </span>
+        <span class="text-md mt-6 text-zinc-900/90">
+          {href}
+        </span>
+      </div>
+    </div>
+    <img
+      src={img.src}
+      alt={img.alt}
+      class="min-h-fit w-full rounded-3xl border border-zinc-600 bg-cover object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</Element>

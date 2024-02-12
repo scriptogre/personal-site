@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+const { class: classList } = Astro.props;
+---
+
+<div class:list={["flex gap-3 text-sm", classList]}>
+  <a
+    target="_blank"
+    href="https://www.linkedin.com/in/christian-tanul-94333a17a/"
+    aria-label="LinkedIn"
+  >
+    <Icon name="ri:linkedin-fill" class="size-5" />
+  </a>
+  <a target="_blank" href="https://github.com/scriptogre" aria-label="GitHub">
+    <Icon name="ri:github-fill" class="size-5" />
+  </a>
+  <a
+    target="_blank"
+    href="https://stackoverflow.com/users/22652799/christian-tanul"
+    aria-label="Stack Overflow"
+  >
+    <Icon name="ri:stack-overflow-fill" class="size-5" />
+  </a>
+  <a target="_blank" href="https://twitter.com/scriptogre" aria-label="Twitter">
+    <Icon name="ri:twitter-fill" class="size-5" />
+  </a>
+
+  <button
+    onclick="featured_projects.showModal()"
+    aria-label="Featured Projects"
+  >
+    <Icon name="ri:external-link-fill" class="size-5" />
+  </button>
+</div>

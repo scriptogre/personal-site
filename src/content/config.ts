@@ -20,6 +20,16 @@ const clientPortfolioCollection = defineCollection({
     }),
 });
 
+const projectsCollection = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      coverPhoto: image(),
+      link: z.string(),
+    }),
+});
+
 export const collections = {
   clientsLogos: clientLogoCollection,
   clientsPortfolio: clientPortfolioCollection,

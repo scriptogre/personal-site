@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/contact/ContactForm.svelte";
+import ContactOption from "../components/contact/ContactOption.astro";
+import Divider from "../components/Divider.astro";
+---
+
+<Layout
+  title="Contact Me | Christian Tanul: Personal Site"
+  description="Contact me for any inquiries, questions, or just to say hi!"
+>
+  <div
+    class="mt-20 flex w-full flex-col items-center justify-center lg:mt-40 lg:items-start"
+  >
+    <div class="flex w-full flex-col items-center justify-between lg:flex-row">
+      <div class="mb-16 flex flex-col items-start justify-center gap-8 lg:mb-0">
+        <div class="mb-4 w-full text-center lg:text-start">
+          <h1 class="text-4xl font-semibold">Contact Me</h1>
+          <p class="mt-2 text-lg text-zinc-800/90">
+            I'm always open to new opportunities and collaborations.
+          </p>
+        </div>
+
+        <ContactOption
+          label="Email"
+          value="tanulchristian@gmail.com"
+          href="mailto:tanulchristian@gmail.com"
+          icon="ri:mail-fill"
+        />
+
+        <ContactOption
+          label="Phone"
+          value="+4078916932"
+          href="tel:+4078916932"
+          icon="ri:phone-fill"
+        />
+
+        <div class="flex items-center gap-4 max-lg:px-20">
+          <Icon name="ri:globe-fill" class="size-10" />
+          <div>
+            <h2 class="text-lg font-semibold">Social Media</h2>
+            <a
+              href="https://www.linkedin.com/in/christian-tanul-94333a17a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-800"
+            >
+              LinkedIn
+            </a>
+            <span class="mx-1">•</span>
+            <a
+              href="https://www.github.com/scriptogre"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-800"
+            >
+              GitHub
+            </a>
+            <span class="mx-1">•</span>
+            <a
+              href="https://stackoverflow.com/users/22652799/christian-tanul"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-800"
+            >
+              Stack Overflow
+            </a>
+            <span class="mx-1">•</span>
+            <a
+              href="https://www.twitter.com/scriptogre"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-zinc-800"
+            >
+              Twitter (X)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <ContactForm client:load />
+    </div>
+  </div>
+</Layout>

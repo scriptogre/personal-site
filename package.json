@@ -17,6 +17,8 @@
     "@fontsource-variable/rubik": "^5.0.20",
     "@fontsource/barlow": "^5.0.8",
     "@iconify-json/ri": "^1.1.19",
+    "@sendgrid/mail": "^8.1.0",
+    "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.3.1",
     "astro-icon": "latest",
     "daisyui": "latest",

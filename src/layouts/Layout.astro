@@ -5,6 +5,7 @@ import "@fontsource-variable/rubik";
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import DialogProjects from "../components/DialogProjects.astro";
 
 const { title, description } = Astro.props;
 ---
@@ -21,23 +22,23 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/christian-tanul-logo.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
     <ViewTransitions />
   </head>
 
   <body
-    class="min-h-screen bg-gradient-to-br from-zinc-100 to-zinc-200 bg-fixed">
+    class="min-h-screen bg-gradient-to-br from-zinc-100 to-zinc-200 bg-fixed dark:from-zinc-800 dark:to-zinc-900"
+  >
     <div
-      class="mx-auto min-h-full max-w-lg px-4 transition-all duration-500 md:max-w-xl lg:max-w-6xl">
+      class="mx-auto min-h-full max-w-lg px-4 transition-all duration-500 md:max-w-xl lg:max-w-6xl"
+    >
       <Nav />
-      <main class="animate-fade">
+      <main class="min-h-[70vh] animate-fade">
         <slot />
       </main>
       <Footer />
     </div>
+
+    <DialogProjects />
     <style is:global>
       body {
         @apply font-['Rubik_Variable'] text-zinc-800;

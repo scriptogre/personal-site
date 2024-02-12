@@ -10,5 +10,6 @@ export default {
       xl: "1250px",
     },
   },
-  plugins: [require("tailwindcss-animated"), require("daisyui")],
+  plugins: [require("tailwindcss-animated"), require("daisyui"), require("@tailwindcss/typography")],
+  darkMode: 'class'
 };

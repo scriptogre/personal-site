@@ -6,5 +6,5 @@ export default {
     "prettier-plugin-svelte",
     "prettier-plugin-tailwindcss",
   ],
-  bracketSameLine: true,
+  bracketSameLine: false,
 };
