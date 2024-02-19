@@ -1,0 +1,509 @@
+---
+import BackToSiteBtn from "../components/lessons/BackToSiteButton.astro";
+import SkipToRegistration from "../components/lessons/SkipToRegistration.svelte";
+import ShootingStars from "../components/lessons/ShootingStars.astro";
+import { Icon } from "astro-icon/components";
+import Timeline from "../components/Timeline/Timeline.svelte";
+import ModuleCard from "../components/lessons/ModuleCard.astro";
+import SpotsLeft from "../components/lessons/SpotsLeft.svelte";
+const { title, description } = Astro.props;
+
+let tools = [
+  {
+    icon: "devicon:html5",
+    name: "HTML",
+    link: "https://www.youtube.com/watch?v=ok-plXXHlWw",
+  },
+  {
+    icon: "devicon:css3",
+    name: "CSS",
+    link: "https://www.youtube.com/watch?v=OEV8gMkCHXQ",
+  },
+  {
+    icon: "devicon:javascript",
+    name: "JavaScript",
+    link: "https://www.youtube.com/watch?v=DHjqpvDnNGE",
+  },
+  {
+    icon: "devicon:git",
+    name: "Git",
+    link: "https://www.youtube.com/watch?v=hwP7WQkmECE",
+  },
+  {
+    icon: "logos:tailwindcss-icon",
+    name: "Tailwind CSS",
+    link: "https://www.youtube.com/watch?v=mr15Xzb1Ook",
+  },
+  {
+    icon: "logos:astro-icon",
+    name: "Astro",
+    link: "https://www.youtube.com/watch?v=ok-plXXHlWw",
+    classList: ["fill-white"],
+  },
+  {
+    icon: "devicon:svelte",
+    name: "Svelte",
+    link: "https://www.youtube.com/watch?v=rv3Yq-B8qp4",
+  },
+  {
+    icon: "logos:python",
+    name: "Python",
+    link: "https://www.youtube.com/watch?v=x7X9w_GIm1s",
+  },
+  {
+    icon: "logos:vercel-icon",
+    name: "Vercel",
+    link: "https://www.youtube.com/watch?v=ok-plXXHlWw",
+    classList: ["fill-white"],
+  },
+];
+
+let registrations = [
+  {
+    startDate: new Date(new Date().getFullYear(), 0, 1),
+    endDate: new Date(new Date().getFullYear(), 2, 1),
+  },
+];
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" property="og:description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/christian-tanul-logo.webp" />
+  </head>
+
+  <body
+    class="min-h-screen bg-[linear-gradient(175deg,#121718_50%,#1d2631)] bg-fixed text-gray-300">
+    <BackToSiteBtn />
+
+    <SkipToRegistration href="#registration-section" client:load />
+
+    <ShootingStars />
+
+    <section
+      id="hero-section"
+      class="mx-auto mb-16 h-screen w-full max-w-5xl animate-fade-up max-sm:px-4">
+      <div class="mx-auto flex h-screen flex-col items-center justify-center">
+        <a
+          href="#registration-section"
+          class="inline-flex items-center justify-between rounded-full border border-neutral px-1 py-1 ps-4 shadow shadow-transparent duration-500 hover:scale-105 hover:shadow-orange-400"
+          role="alert">
+          <span class="ms-2 whitespace-nowrap text-sm">Registrations are open!</span>
+          <span
+            class="ml-3 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 px-4 py-1.5 text-xs text-black"
+            >On
+          </span>
+        </a>
+        <div class="my-28 flex w-full flex-col items-center justify-between lg:my-44 lg:flex-row">
+          <div class="mb-8 flex w-full flex-col items-center text-start lg:items-start">
+            <h2
+              class="mb-2 text-center font-['Sora'] text-2xl font-semibold text-gray-300 lg:text-3xl">
+              Learn Full-Stack Web Development
+            </h2>
+            <h3 class="mb-6 max-w-2xl text-center text-2xl font-light text-gray-300/90">
+              Remote & in-person lessons in <a
+                href="https://maps.app.goo.gl/TvTF4PPVrVnkGQgE6"
+                target="_blank"
+                class="">Timișoara, Romania</a
+              >
+            </h3>
+
+            <span
+              class="mb-8 bg-gradient-to-br from-amber-400 to-orange-500 bg-clip-text text-2xl font-semibold text-transparent">
+              14/16 spots available
+            </span>
+            <div class="flex w-full items-center justify-center rounded-full lg:justify-start">
+              <img
+                src="/christian-tanul-picture.webp"
+                class="size-20 rounded-full object-cover"
+                alt="Christian Tanul"
+              />
+              <div class="ms-4 flex flex-col items-start justify-center">
+                <span class="font-light text-gray-400">Teacher</span>
+                <h3 class="text-2xl text-gray-300">Christian Tanul</h3>
+                <p class="font-light text-gray-400">6 years of experience</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-center max-lg:order-first">
+            <video controls class="shadow-amber-500x mb-8 w-full max-w-xl rounded-3xl shadow-lg">
+              <source src="/lessons-showcase.webm" type="video/webm" />
+            </video>
+            <div
+              class="hidden max-w-md flex-wrap items-center justify-center gap-1 text-sm lg:flex lg:justify-start">
+              {
+                tools.map((tool) => (
+                  <a
+                    href={tool.link}
+                    target="_blank"
+                    class:list={[
+                      tool.classList,
+                      "flex items-center gap-2 whitespace-nowrap rounded-full border border-transparent px-3 py-1.5 leading-snug duration-300 ease-in-out hover:scale-105 hover:border-neutral hover:shadow hover:shadow-none",
+                    ]}>
+                    <Icon name={tool.icon} class="size-3.5" />
+                    {tool.name}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <Timeline class="mb-12" registrations={registrations} client:load />
+      </div>
+    </section>
+
+    <section
+      id="overview-section"
+      class="container mx-auto mb-24 grid max-w-prose animate-fade max-sm:px-4">
+      <h2 class="text-center font-['Sora'] text-4xl font-semibold text-gray-300 lg:text-start">
+        What is this? 🤔
+      </h2>
+      <p class="mt-4 text-justify text-lg font-light text-gray-300/90">
+        This is my attempt at providing practical web development education in the form of remote &
+        in-person sessions. I want to provide you with all the tools, knowledge, and resources you
+        need to become a professional web developer.
+      </p>
+    </section>
+
+    <section id="modules-section" class="mx-auto mb-24 max-w-prose max-sm:px-4">
+      <div class="mb-12 flex w-full flex-col justify-between gap-12 lg:mb-24 lg:gap-24">
+        <ModuleCard
+          title="Simple Static Websites"
+          order={1}
+          color="amber-400"
+          fromColor="amber-400"
+          toColor="amber-500"
+          includesBonus={true}
+          duration="1-2 months"
+          description="Learn the fundamentals of web development, and build your first static website."
+          learningPoints={[
+            "Create the skeleton of a website with HTML",
+            "Stylize our website and make it look good with CSS",
+            "Add some interactivity with JavaScript",
+            "Use Git to keep track of our code and collaborate with others",
+          ]}
+          tools={[
+            {
+              icon: "devicon:html5",
+              name: "HTML",
+              link: "https://www.youtube.com/watch?v=ok-plXXHlWw",
+              classList: ["border-[#E44D26]/50", "shadow-[#F16529]/50"],
+            },
+            {
+              icon: "devicon:css3",
+              name: "CSS",
+              link: "https://www.youtube.com/watch?v=OEV8gMkCHXQ",
+              classList: ["border-[#1572B6]/50", "shadow-[#33A9DC]/50"],
+            },
+            {
+              icon: "devicon:javascript",
+              name: "JavaScript",
+              link: "https://www.youtube.com/watch?v=DHjqpvDnNGE",
+              classList: ["border-[#F0DB4F]/50", "shadow-[#F0DB4F]/50"],
+            },
+            {
+              icon: "devicon:git",
+              name: "Git",
+              link: "https://www.youtube.com/watch?v=hwP7WQkmECE",
+              classList: ["border-[#f34f29]/50", "shadow-[#f34f29]/50"],
+            },
+          ]}>
+          <Fragment slot="bonus">
+            Learn how to use <a
+              class="mx-0.5 inline-flex translate-y-[3px] items-center font-semibold"
+              href="https://chat.openai.com/"
+              target="_blank">
+              <Icon name="logos:openai-icon" class="me-1 size-5 fill-white" /> ChatGPT</a
+            > to understand concepts faster.
+          </Fragment>
+          <Fragment slot="result">
+            A simple static website deployed to
+            <a
+              class="inline-flex translate-y-[3px] items-center font-semibold"
+              href="https://pages.github.com/"
+              target="_blank">
+              <Icon name="ri:github-fill" class="me-1 size-5" />
+              GitHub Pages
+            </a>.
+          </Fragment>
+        </ModuleCard>
+
+        <ModuleCard
+          title="Modern Static Websites"
+          order={2}
+          color="amber-500"
+          fromColor="amber-500"
+          toColor="orange-400"
+          includesBonus={true}
+          duration="2-3 months"
+          description="See how much more we can achieve using frameworks, and learn how to design modern static websites."
+          learningPoints={[
+            "Come up with designs that actually look good, as a beginner",
+            "Use the power of Svelte to write less JavaScript",
+            "Use Tailwind CSS to style our website faster",
+            "Deploy to custom domains like <a href='https://tanulchristian.dev' class='font-semibold'>tanulchristian.dev</a>",
+          ]}
+          tools={[
+            {
+              icon: "logos:astro-icon",
+              name: "Astro",
+              link: "https://www.youtube.com/watch?v=dsTXcSeAZq8",
+              classList: ["border-[#DE42F5]/50", "shadow-[#DE42F5]/50 fill-white"],
+            },
+            {
+              icon: "devicon:svelte",
+              name: "Svelte",
+              link: "https://www.youtube.com/watch?v=rv3Yq-B8qp4",
+              classList: ["border-[#F96743]/50", "shadow-[#F96743]/50"],
+            },
+            {
+              icon: "logos:tailwindcss-icon",
+              name: "Tailwind CSS",
+              link: "https://www.youtube.com/watch?v=mr15Xzb1Ook",
+              classList: ["border-sky-500/50", "shadow-sky-400/50"],
+            },
+          ]}>
+          <Fragment slot="bonus">
+            Learn how to use <a
+              class="mx-0.5 inline-flex translate-y-[3px] items-center font-semibold"
+              href="https://openai.com/dall-e-3"
+              target="_blank">
+              <Icon name="logos:openai-icon" class="me-1 size-5 fill-white" /> DALL-E 3</a
+            > to generate images for our website.
+          </Fragment>
+          <Fragment slot="result">
+            A modern & dynamic web application deployed to <a
+              class="ms-1 inline-flex translate-y-[1px] items-center font-semibold"
+              href="https://vercel.com/"
+              target="_blank">
+              <Icon name="logos:vercel-icon" class="me-1 size-4 fill-white" />
+              Vercel
+            </a>.
+          </Fragment>
+        </ModuleCard>
+      </div>
+
+      <div class="flex w-full flex-col justify-between gap-12 lg:gap-24">
+        <div
+          class="shadow-amber-00 relative w-full overflow-hidden rounded-3xl border border-neutral bg-neutral/15 p-8 text-lg shadow-lg lg:p-10">
+          <span class="absolute right-8 top-8 text-4xl text-amber-500 lg:right-10 lg:top-10">3</span
+          >
+          <div class="mb-2 flex items-center justify-start">
+            <div class="flex flex-col items-start">
+              <h2
+                class=`mb-2 bg-gradient-to-br from-amber-400 to-orange-500 bg-clip-text text-2xl font-semibold text-transparent`>
+                Full-Stack Web Apps
+              </h2>
+            </div>
+          </div>
+
+          <p class="text-lg font-light">Coming soon...</p>
+        </div>
+
+        <div
+          class="relative w-full overflow-hidden rounded-3xl border border-neutral bg-neutral/15 p-8 text-lg lg:p-10">
+          <span class="absolute right-8 top-8 text-4xl text-amber-500 lg:right-10 lg:top-10">4</span
+          >
+          <div class="mb-2 flex items-center justify-start">
+            <div class="flex flex-col items-start">
+              <h2
+                class="mb-2 bg-gradient-to-br from-amber-400 to-orange-500 bg-clip-text text-2xl font-semibold text-transparent">
+                GPT-Integrated Web Apps
+              </h2>
+              <p class="text-lg font-light">Coming soon...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="bonus-section"
+      class="container mx-auto mb-24 grid max-w-prose animate-fade text-justify max-sm:px-4 lg:mb-36">
+      <h3 class="text-3xl font-semibold text-gray-300/90">
+        90% of online coding advice is garbage 🗑️, <span class=""
+          >according to <a
+            href="https://en.wikipedia.org/wiki/Sturgeon%27s_law"
+            target="_blank"
+            class="font-bold">Sturgeon's Law</a
+          >.</span
+        >
+      </h3>
+
+      <p class="mt-4 text-lg font-light text-gray-300/90">
+        Good programmers are too busy building things.
+      </p>
+
+      <p class="mt-4 text-lg font-light text-gray-300/90">
+        That's why I started filming myself working. I wanted my mentees to see the messy,
+        behind-the-scenes problem-solving – the wrong turns, the 'aha!' moments, everything.
+      </p>
+
+      <p class="mt-4 text-lg font-light text-gray-300/90">
+        Turns out, those real-life coding sessions are super helpful! My mentees love that it's raw
+        and honest, not some perfectly polished how-to guide.
+      </p>
+
+      <h2
+        class="mt-24 text-center font-['Sora'] text-4xl font-semibold text-gray-300 lg:text-start">
+        Bonus 🎁
+      </h2>
+
+      <p class="mt-2 text-lg font-light text-gray-300/90">
+        I've prepared <span class="font-semibold">over 60 hours</span> of such content building projects
+        from start to finish, and I've decided to make it available to you for free, as a bonus for joining
+        the course. This <span class="font-semibold"
+          >includes the videos, code, and all the resources</span
+        >
+        I used to build the projects.
+      </p>
+    </section>
+
+    <section
+      id="registration-section"
+      class="mb-12 flex items-center justify-center pt-24 lg:mb-24">
+      <div class="flex max-w-sm flex-col items-center justify-center text-center font-['Sora']">
+        <span
+          class="mb-8 text-5xl font-bold text-gray-300/90 drop-shadow-lg [text-shadow:0px_.09em_4px_#191C21] before:absolute before:-bottom-[.07em] before:-z-10 before:h-10 before:w-full before:rounded-full before:bg-gradient-to-r before:from-amber-400/75 before:to-orange-400/75 before:blur-md">
+          <span
+            class="absolute -left-16 -top-6 -z-10 -rotate-[30deg] select-none whitespace-nowrap text-3xl text-gray-300/50 line-through"
+            >900 RON
+          </span>600 RON<span class="text-sm font-light text-gray-300">/month</span>
+        </span>
+
+        <h3
+          class="mb-2 bg-gradient-to-br from-amber-400 to-orange-500 bg-clip-text text-4xl font-semibold text-gray-300 text-transparent">
+          Join early access
+        </h3>
+        <p class="mb-8 font-['Barlow'] font-light text-gray-400">
+          To also gain <span class="font-semibold">free</span> access to <span
+            class="underline decoration-orange-500/80 decoration-2 underline-offset-[6px]"
+            >premium</span
+          > content.
+        </p>
+
+        <form id="registration-form" class="flex flex-col items-start justify-center text-start">
+          <span class="mb-2 font-semibold text-gray-400"> Your details </span>
+
+          <input type="text" name="full_name" placeholder="Full name" class="input mb-4 w-full" />
+
+          <input type="email" name="email" placeholder="Your email" class="input mb-4 w-full" />
+
+          <input type="tel" name="phone" placeholder="Phone number" class="input mb-8 w-full" />
+
+          <div class="mb-6">
+            <p class="mb-2 font-semibold text-gray-400">
+              1. Do you have previous coding experience?
+            </p>
+
+            <div class="flex w-full flex-col items-start">
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <input type="radio" name="radio-10" class="radio checked:bg-amber-500" checked />
+                  <span class="label-text ms-2">Yes, I have coded before</span>
+                </label>
+              </div>
+
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  <input type="radio" name="radio-10" class="radio checked:bg-amber-500" checked />
+                  <span class="label-text ms-2">Nope, I've never written code</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <span class="font-semibold text-gray-400">
+              2. Why do you want to join this course?
+            </span>
+
+            <textarea name="message" placeholder="Your message" class="textarea mt-2 w-full"
+            ></textarea>
+          </div>
+
+          <div class="flex w-full justify-center">
+            <button class="mt-4 translate-x-2 rounded-md bg-black">
+              <span
+                class="block -translate-x-2 -translate-y-2 rounded-md border-2 border-black bg-gradient-to-br from-amber-400 to-orange-400 p-4 text-xl text-black transition-all hover:-translate-y-3 active:translate-x-0 active:translate-y-0">
+                REGISTER NOW
+              </span>
+            </button>
+          </div>
+
+          <div class="mt-4 flex w-full flex-col items-center justify-center">
+            <SpotsLeft
+              spots={16}
+              class="bg-gradient-to-br from-amber-200 to-orange-300 bg-clip-text font-semibold text-transparent"
+            />
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section
+      id="frequently-asked-questions-section"
+      class="container mx-auto grid max-w-prose animate-fade pb-12 max-sm:px-4">
+      <h2 class="mb-12 text-center font-['Sora'] text-2xl font-semibold text-gray-300">
+        Frequently Asked Questions
+      </h2>
+
+      <div
+        class="drop-shadow-amber-500 collapse collapse-arrow mb-4 border border-neutral bg-neutral/10 p-1 text-lg">
+        <input type="checkbox" autocomplete="off" />
+        <div class="collapse-title font-['Sora'] text-lg">
+          Does the discount apply to the entire course?
+        </div>
+        <div class="collapse-content text-base font-light">
+          <p>
+            The discounted monthly price of 600 RON will apply for the first 6 months (by which time
+            the course should be completed). After that, the price will revert to the standard 800
+            RON per month.
+          </p>
+        </div>
+      </div>
+
+      <div class="collapse collapse-arrow mb-4 border border-neutral bg-neutral/10 p-1 text-lg">
+        <input type="checkbox" autocomplete="off" />
+        <div class="collapse-title font-['Sora'] text-lg">
+          Why not just learn WordPress or WebFlow?
+        </div>
+        <div class="collapse-content text-base font-light">
+          <p>
+            If your single and only goal is to build a website as quickly as possible, then
+            WordPress and Webflow are great options. However, the abilities you gain from learning
+            HTML, CSS, TailwindCSS, Astro, and Svelte are invaluable. learning them will make you a
+            much better developer, and could lead to higher paying opportunities than just building
+            websites.
+          </p>
+        </div>
+      </div>
+
+      <div class="collapse collapse-arrow mb-4 border border-neutral bg-neutral/10 p-1 text-lg">
+        <input type="checkbox" autocomplete="off" />
+        <div class="collapse-title font-['Sora'] text-lg">What if I don't like the course?</div>
+        <div class="collapse-content text-base font-light">
+          <p>
+            If you don't like the course, you can cancel at any time. You will only be charged for
+            the months you were enrolled in the course.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <style is:global>
+      body {
+        @apply font-['Barlow'];
+      }
+    </style>
+  </body>
+</html>

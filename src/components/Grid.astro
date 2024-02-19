@@ -3,12 +3,8 @@ const { variant } = Astro.props;
 ---
 
 <div
-  class:list={[
-    "grid",
-    { offset: variant === "offset", small: variant === "small" },
-  ]}
-  class="offset col-span-1 mt-14 grid list-none grid-cols-1 gap-8 p-0 lg:grid-cols-[1fr_1fr] lg:grid-rows-[1fr] lg:gap-16"
->
+  class:list={["grid", { offset: variant === "offset", small: variant === "small" }]}
+  class="offset col-span-1 mt-14 grid list-none grid-cols-1 gap-8 p-0 lg:grid-cols-[1fr_1fr] lg:grid-rows-[1fr] lg:gap-16">
   <slot />
 </div>
 

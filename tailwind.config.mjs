@@ -10,6 +10,19 @@ export default {
       xl: "1250px",
     },
   },
-  plugins: [require("tailwindcss-animated"), require("daisyui"), require("@tailwindcss/typography")],
-  darkMode: 'class'
+  plugins: [
+    require("tailwindcss-animated"),
+    require("daisyui"),
+    require("@tailwindcss/typography"),
+  ],
+  darkMode: "class",
+  safelist: [
+    {
+      pattern: /(shadow|bg|text|from|to)-(gray|amber|orange)-(100|200|300|400|500|600)/,
+      variants: ["hover", "group-hover"],
+    },
+    {
+      pattern: /(bg|text)-neutral/,
+    }
+  ]
 };

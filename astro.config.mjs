@@ -9,16 +9,16 @@ export default defineConfig({
   integrations: [
     tailwind(),
     icon({
-      iconDir: "src/assets/icons"
+      iconDir: "src/assets/icons",
     }),
-    svelte()
+    svelte(),
   ],
   output: "hybrid",
   adapter: vercel({
     webAnalytics: {
-      enabled: true
+      enabled: true,
     },
-    imageService: true
+    imageService: true,
   }),
-  trailingSlash: "never"
+  trailingSlash: "never",
 });

@@ -33,21 +33,18 @@
       message = "";
     } else {
       console.error("Form submission failed: ", result.message);
-      errorMessage =
-        result.message || "Something went wrong, please try again.";
+      errorMessage = result.message || "Something went wrong, please try again.";
     }
   };
 </script>
 
 <form
   on:submit|preventDefault={submitForm}
-  class="relative flex min-h-full w-96 max-w-[512px] flex-col justify-center rounded-3xl border border-zinc-600 bg-zinc-100/80 p-8 text-start shadow-xl"
->
+  class="relative flex min-h-full w-96 max-w-[512px] flex-col justify-center rounded-3xl border border-zinc-600 bg-zinc-100/80 p-8 text-start shadow-xl">
   {#if isSubmitting}
     <div
       id="overlay"
-      class="absolute inset-0 z-50 flex items-center justify-center rounded-3xl bg-zinc-100/90"
-    >
+      class="absolute inset-0 z-50 flex items-center justify-center rounded-3xl bg-zinc-100/90">
       <p class="inline-flex items-end text-zinc-800">
         Sending<span class="loading loading-dots loading-sm ms-1"></span>
       </p>
@@ -72,28 +69,24 @@
     placeholder="Name"
     bind:value={name}
     class="mb-3 w-full rounded-lg border border-zinc-300 bg-transparent p-2"
-    required
-  />
+    required />
   <input
     type="email"
     name="email"
     placeholder="Email"
     bind:value={email}
     class="mb-3 w-full rounded-lg border border-zinc-300 bg-transparent p-2"
-    required
-  />
+    required />
   <textarea
     name="message"
     placeholder="Message"
     bind:value={message}
     class="mb-3 w-full rounded-lg border border-zinc-300 bg-transparent p-2"
-    required
-  ></textarea>
+    required></textarea>
   <button
     type="submit"
     class="w-full rounded-lg bg-zinc-800 p-2 font-semibold text-white"
-    disabled={isSubmitting}
-  >
+    disabled={isSubmitting}>
     Send
   </button>
 </form>

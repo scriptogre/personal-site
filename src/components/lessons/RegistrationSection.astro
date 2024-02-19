@@ -1,0 +1,79 @@
+---
+import SpotsLeft from "./SpotsLeft.svelte";
+
+const { id } = Astro.props;
+---
+
+<section {id} class="mb-12 flex items-center justify-center pt-24 lg:mb-24">
+  <div class="flex max-w-sm flex-col items-center justify-center text-center font-['Sora']">
+    <span
+      class="mb-8 text-5xl font-bold text-gray-300/90 drop-shadow-lg [text-shadow:0px_.09em_4px_#191C21] before:absolute before:-bottom-[.07em] before:-z-10 before:h-10 before:w-full before:rounded-full before:bg-gradient-to-r before:from-amber-400/75 before:to-orange-400/75 before:blur-md">
+      <span
+        class="absolute -left-16 -top-6 -z-10 -rotate-[30deg] select-none whitespace-nowrap text-3xl text-gray-300/50 line-through"
+        >900 RON
+      </span>600 RON<span class="text-sm font-light text-gray-300">/month</span>
+    </span>
+
+    <h3
+      class="mb-2 bg-gradient-to-br from-amber-400 to-orange-500 bg-clip-text text-4xl font-semibold text-gray-300 text-transparent">
+      Join early access
+    </h3>
+    <p class="mb-8 font-['Barlow'] font-light text-gray-400">
+      To also gain <span class="font-semibold">free</span> access to <span
+        class="underline decoration-orange-500/80 decoration-2 underline-offset-[6px]">premium</span
+      > content.
+    </p>
+
+    <form id="registration-form" class="flex flex-col items-start justify-center text-start">
+      <span class="mb-2 font-semibold text-gray-400"> Your details </span>
+
+      <input type="text" name="full_name" placeholder="Full name" class="input mb-4 w-full" />
+
+      <input type="email" name="email" placeholder="Your email" class="input mb-4 w-full" />
+
+      <input type="tel" name="phone" placeholder="Phone number" class="input mb-8 w-full" />
+
+      <div class="mb-6">
+        <p class="mb-2 font-semibold text-gray-400">1. Do you have previous coding experience?</p>
+
+        <div class="flex w-full flex-col items-start">
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <input type="radio" name="radio-10" class="radio checked:bg-amber-500" checked />
+              <span class="label-text ms-2">Yes, I have coded before</span>
+            </label>
+          </div>
+
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <input type="radio" name="radio-10" class="radio checked:bg-amber-500" checked />
+              <span class="label-text ms-2">Nope, I've never written code</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <span class="font-semibold text-gray-400"> 2. Why do you want to join this course? </span>
+
+        <textarea name="message" placeholder="Your message" class="textarea mt-2 w-full"></textarea>
+      </div>
+
+      <div class="flex w-full justify-center">
+        <button class="mt-4 translate-x-2 rounded-md bg-black">
+          <span
+            class="block -translate-x-2 -translate-y-2 rounded-md border-2 border-black bg-gradient-to-br from-amber-400 to-orange-400 p-4 text-xl text-black transition-all hover:-translate-y-3 active:translate-x-0 active:translate-y-0">
+            REGISTER NOW
+          </span>
+        </button>
+      </div>
+
+      <div class="mt-4 flex w-full flex-col items-center justify-center">
+        <SpotsLeft
+          spots={16}
+          class="bg-gradient-to-br from-amber-200 to-orange-300 bg-clip-text font-semibold text-transparent"
+        />
+      </div>
+    </form>
+  </div>
+</section>

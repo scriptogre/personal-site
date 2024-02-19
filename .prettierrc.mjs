@@ -1,10 +1,9 @@
 // ..prettierrc.mjs
 /** @type {import("prettier").Config} */
 export default {
-  plugins: [
-    "prettier-plugin-astro",
-    "prettier-plugin-svelte",
-    "prettier-plugin-tailwindcss",
-  ],
-  bracketSameLine: false,
+  plugins: ["prettier-plugin-astro", "prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+  bracketSameLine: true,
+  jsxBracketSameLine: true,
+  printWidth: 100,
+  bracketSpacing: true,
 };
