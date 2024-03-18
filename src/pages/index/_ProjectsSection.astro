@@ -1,9 +1,9 @@
 ---
-import ProjectPreview from "./ProjectPreview.astro";
-import GridProjects from "../Grid.astro";
+import ProjectPreview from "../../components/ProjectPreview.astro";
+import GridProjects from "../../components/Grid.astro";
 ---
 
-<section id="projects" class="mb-24">
+<section id="projects" class="mb-12 lg:mb-24">
   <div
     class="flex max-w-md flex-col items-center justify-center gap-2 text-center max-lg:mx-auto lg:items-start lg:gap-4 lg:text-start">
     <h3 class="text-3xl font-semibold">Projects</h3>
@@ -14,6 +14,7 @@ import GridProjects from "../Grid.astro";
     <ProjectPreview
       title="Active Learning"
       description="The presentation website of a spanish course provider."
+      href="https://altm.ro/"
       img={{
         src: "/altm-preview.webp",
         alt: "Active Learning Timisoara Preview",
@@ -31,12 +32,12 @@ import GridProjects from "../Grid.astro";
     />
 
     <ProjectPreview
-      title="Cosmetica Auto TM"
-      description="The presentation website of a car detailing service."
-      href="https://cosmeticaautotm.ro/"
+      title="Intreaba Legea"
+      description="A platform that provides legal advice for romanian citizens with the help of AI."
+      href="https://intreabalegea.ro/"
       img={{
-        src: "/cosmeticaautotm-preview.webp",
-        alt: "Cosmetica Auto TM Preview",
+        src: "/intreabalegea-preview.webp",
+        alt: "Intreaba Legea Preview",
       }}
     />
 

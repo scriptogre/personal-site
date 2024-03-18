@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ClientsSection from "../components/index/ClientsSection.astro";
-import SkillsSection from "../components/index/SkillsSection.astro";
-import ProjectsSection from "../components/index/ProjectsSection.astro";
-import HeroSection from "../components/index/HeroSection.astro";
 import Divider from "../components/Divider.astro";
-import ContactMeSection from "../components/index/ContactMeSection.astro";
+
+import HeroSection from "./index/_HeroSection.astro";
+import SkillsSection from "./index/_SkillsSection.astro";
+import ProjectsSection from "./index/_ProjectsSection.astro";
+import ClientsSection from "./index/_ClientsSection.astro";
+import ContactMeSection from "./index/_ContactMeSection.astro";
 ---
 
 <Layout
@@ -13,19 +14,19 @@ import ContactMeSection from "../components/index/ContactMeSection.astro";
   description="A developer with 6 years of experience and lots of passion">
   <HeroSection />
 
-  <Divider class="mb-24 w-0 lg:w-96" />
+  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
 
   <SkillsSection />
 
-  <Divider class="mb-24 w-0 lg:w-96" />
+  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
 
   <ProjectsSection />
 
-  <Divider class="mb-24 w-0 lg:w-96" />
+  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
 
   <ClientsSection />
 
-  <Divider class="mb-24 w-0 lg:w-96" />
+  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
 
   <ContactMeSection />
 </Layout>
