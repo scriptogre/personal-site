@@ -19,8 +19,8 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <link id="favicon" rel="icon" type="image/webp" sizes="32x32" href="/logo-dark.webp" />
-    <script is:inline>
+    <link id="favicon" rel="icon" type="image/webp" sizes="32x32" href="/logo-dark.webp" transition:persist />
+    <script is:inline  transition:persist>
       const usesDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches || false;
       const favicon = document.getElementById("favicon");
 
