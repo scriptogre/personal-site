@@ -1,5 +1,7 @@
 import sendGrid from "@sendgrid/mail";
 
+export const prerender = false;
+
 // @ts-ignore
 sendGrid.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
