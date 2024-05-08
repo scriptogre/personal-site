@@ -1,0 +1,26 @@
+---
+import SideNavItemWithChildren from "./SideNavItemWithChildren.astro";
+import SideNavItemLink from "./SideNavItemLink.astro";
+
+interface Props {
+  item: {
+    label: string;
+    href?: string;
+    children?: any;
+    icon?: {
+      name: string;
+      class: string;
+    }
+  };
+  collapsible?: boolean;
+}
+
+const { item, collapsible = true } = Astro.props;
+---
+  <li>
+    {item.children ? (
+      <SideNavItemWithChildren item={item} collapsible={collapsible} />
+    ) : (
+      <SideNavItemLink item={item} />
+    )}
+  </li>

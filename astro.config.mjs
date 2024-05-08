@@ -2,23 +2,18 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 import svelte from "@astrojs/svelte";
-import icon from "astro-icon";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    icon({
-      iconDir: "src/assets/icons",
-    }),
-    svelte(),
-  ],
+  integrations: [tailwind({
+    applyBaseStyles: false
+  }), svelte(), mdx()],
   output: "hybrid",
   adapter: vercel({
     webAnalytics: {
-      enabled: true,
+      enabled: true
     },
-    imageService: true,
-  }),
-  trailingSlash: "never",
+    imageService: true
+  })
 });

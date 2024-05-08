@@ -4,6 +4,7 @@
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
     },
     "allowSyntheticDefaultImports": true,
   },

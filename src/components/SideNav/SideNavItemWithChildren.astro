@@ -1,0 +1,30 @@
+---
+import SideNavItem from "./SideNavItem.astro";
+
+const { item, collapsible }  = Astro.props;
+
+const Element = collapsible ? "label" : "a";
+---
+<>
+  <Element href={item.href} class="group peer select-none cursor-pointer flex items-center px-4 py-2 rounded-lg hover:bg-neutral-400/10 duration-300">
+
+    <!-- Icon -->
+    {item.icon && <iconify-icon icon={item.icon.name} class:list={[item.icon.class, "text-xl me-2.5"]} />}
+
+    <!-- Label -->
+    <span>{item.label}</span>
+
+    {collapsible &&
+      <!-- Checkbox (for toggling open/closed state) -->
+      <input type="checkbox" class="peer hidden" autocomplete="off" checked />
+
+      <!-- Arrow -->
+      <iconify-icon icon="bi:chevron-down" class="text-xs ml-auto peer-checked:rotate-180 duration-200" />
+    }
+
+  </Element>
+
+  <ul class:list={[collapsible ? 'hidden peer-has-[:checked]:flex' : 'flex', "ml-4 pl-2 mt-2 gap-2 group flex-col relative before:absolute before:inset-y-3 before:left-0 before:w-[1px] before:bg-neutral-800/10 before:dark:bg-neutral-400/5 before:content-['']"]}>
+    {item.children.map((child) => <SideNavItem item={child} />)}
+  </ul>
+</>

@@ -1,0 +1,7 @@
+---
+const { item } = Astro.props;
+---
+<a href={item.href} class="select-none cursor-pointer flex items-center px-4 py-2 rounded-lg hover:bg-neutral-400/10 duration-300">
+  {item.icon && <iconify-icon icon={item.icon.name} class:list={[item.icon.class, "text-xl me-2.5"]} />}
+  <span>{item.label}</span>
+</a>

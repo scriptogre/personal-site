@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+
+import SideNavItem from "@components/SideNav/SideNavItem.astro";
+
+let blogs = await getCollection('blogs');
+let links = await getCollection('links');
+
+let items = [
+  {
+    label: 'Home',
+    href: '/',
+    icon: {
+      name: 'ic:round-home',
+      class: 'text-red-700 dark:text-amber-500'
+    },
+  },
+  {
+    label: 'Contact',
+    href: '/contact',
+    icon: {
+      name: 'mdi:contact',
+      class: 'text-red-700 dark:text-amber-500'
+    },
+  },
+  {
+    label: 'Blog',
+    children: [
+      ...blogs.map((blog) => ({
+        label: blog.data.title,
+        href: `/blogs/${blog.slug}`
+      }))
+    ],
+    icon: {
+      name: 'ic:round-article',
+      class: 'text-red-700 dark:text-amber-500'
+    },
+  },
+  {
+    label: 'Lessons',
+    href: 'https://lessons.tanulchristian.dev/',
+    icon: {
+      name: 'ic:round-school',
+      class: 'text-red-700 dark:text-amber-500'
+    },
+  }
+]
+
+const { class: classList } = Astro.props;
+---
+<nav class:list={[classList, "px-4 pb-8 pt-20 border-neutral-400/5 border-r bg-neutral-50 dark:bg-dark-gradient font-['Barlow'] tracking-wide h-full w-96"]}>
+  <ul class="flex flex-col flex-wrap gap-2 h-full">
+    {items.map((item) => <SideNavItem item={item} /> )}
+  </ul>
+</nav>
+

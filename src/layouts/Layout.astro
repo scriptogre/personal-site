@@ -1,63 +1,100 @@
 ---
+import { getCollection } from "astro:content";
+
+import TopNav from "@components/TopNav.astro";
+import SideNav from "@components/SideNav.astro";
+
+// Styles
+import '../css/global.css';
+
+// Fonts (from Fontsource)
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/600.css';
+import '@fontsource-variable/sora';
+
 import { ViewTransitions } from "astro:transitions";
 
-import "@fontsource-variable/rubik";
-import "../styles/global.css";
-import Nav from "../components/Nav.astro";
-import Footer from "../components/Footer.astro";
-import DialogProjects from "../components/DialogProjects.astro";
+let links = await getCollection('links');
+let socials = links.filter((link) => link.data.type === 'social');
 
-const { title, description } = Astro.props;
+const { title, description, keywords='', og_image='' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="bg-gradient-to-br from-zinc-100 to-zinc-200 bg-fixed">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" property="og:description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+<html lang="en" class="scroll-smooth">
 
-    <link id="favicon" rel="icon" type="image/webp" sizes="32x32" href="/logo-dark.webp" transition:persist />
-    <script is:inline  transition:persist>
-      const usesDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches || false;
-      const favicon = document.getElementById("favicon");
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
 
-      function switchIcon(usesDarkMode) {
-        if (usesDarkMode) {
-          favicon.href = "/logo-dark.webp";
-        } else {
-          favicon.href = "/logo-light.webp";
-        }
-      }
+  <!-- Title and description -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
 
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (e) => switchIcon(e.matches));
-      switchIcon(usesDarkMode);
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <ViewTransitions />
-  </head>
+  <!-- Open Graph -->
+  <meta name="author" content="Tanul Christian" />
+  <meta property="og:title" content={title} />
+  <meta
+    property="og:description"
+    content={description}
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tanulchristian.dev/" />
+  {og_image && <meta property="og:image" content={og_image} />}
+  {keywords && <meta name="keywords" content={keywords} />}
 
-  <body
-    class="min-h-screen bg-gradient-to-br from-zinc-100 to-zinc-200 bg-fixed dark:from-zinc-800 dark:to-zinc-900">
-    <div
-      class="mx-auto min-h-full max-w-lg px-4 transition-all duration-500 md:max-w-xl lg:max-w-6xl">
-      <Nav />
-      <main class="min-h-[70vh] animate-fade">
-        <slot />
-      </main>
-      <Footer />
-    </div>
+  <!-- Favicon -->
+  <link id="favicon" rel="icon" type="image/webp" sizes="32x32" href="/logo-white.webp" />
 
-    <DialogProjects />
-    <style is:global>
-      body {
-        @apply font-['Rubik_Variable'] text-zinc-800;
-      }
-    </style>
-  </body>
+  <!-- Web Component - <icon-iconify/> -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <!-- Astro View Transitions -->
+  <ViewTransitions />
+</head>
+
+<body class="relative font-['Barlow'] text-neutral-800 dark:text-neutral-300 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:bg-dark-gradient">
+
+<!-- Backgrounds as separate elements (for transitions to work) -->
+<div id="dark-mode-background" class="-z-10 opacity-100 dark:opacity-0 duration-500 fixed h-dvh w-screen bg-gradient-to-br from-neutral-50 to-neutral-100"></div>
+<div id="light-mode-background" class="-z-10 opacity-0 dark:opacity-100 duration-500 fixed h-dvh w-screen bg-dark-gradient"></div>
+
+<!-- Navigation -->
+<TopNav class="sticky top-0 z-30" />
+<SideNav class="fixed top-0 -left-96 side-nav-open:left-0 z-20 duration-200 ease-out" />
+<label id="side-nav-backdrop" for="side-nav-toggle" class="fixed z-10 top-0 left-0 invisible opacity-0 side-nav-open:visible side-nav-open:opacity-100 duration-200 bg-black/50 mt-[calc(4rem+1px)] w-screen h-screen cursor-pointer"></label>
+
+<!-- Main Content -->
+<main class="mx-auto w-full max-w-6xl px-4 sm:px-8 animate-fade">
+  <slot />
+</main>
+
+<!-- Footer -->
+<footer class="flex flex-col items-center justify-center mb-4 mt-16">
+  <div class="flex gap-4">
+    {socials.map((link) => (
+      <a
+        href={link.data.href}
+        class="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 hover:dark:text-neutral-300 duration-300"
+        target="_blank"
+        aria-label={link.data.label}>
+        <iconify-icon icon={link.data.icon} />
+      </a>
+    ))}
+  </div>
+
+  <span class="text-xs text-neutral-700 dark:text-neutral-400 mt-4">Copyright © {new Date().getFullYear()} Christian Tanul</span>
+</footer>
+
+</body>
 </html>
+
+<style is:global>
+    /* To avoid layout shift */
+    iconify-icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+    }
+</style>

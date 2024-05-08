@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Christian Tanul Portfolio.iml" filepath="$PROJECT_DIR$/.idea/Christian Tanul Portfolio.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../pyoneers-astro/.idea/platform-astro.iml" filepath="$PROJECT_DIR$/../pyoneers-astro/.idea/platform-astro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../christian-tanul-lessons/.idea/christian-tanul-lessons.iml" filepath="$PROJECT_DIR$/../christian-tanul-lessons/.idea/christian-tanul-lessons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lessons-tanulchristian-dev/.idea/lessons-tanulchristian-dev.iml" filepath="$PROJECT_DIR$/../lessons-tanulchristian-dev/.idea/lessons-tanulchristian-dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../old/natalia-gramada/.idea/natalia-gramada.iml" filepath="$PROJECT_DIR$/../old/natalia-gramada/.idea/natalia-gramada.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tanulchristian.dev.iml" filepath="$PROJECT_DIR$/.idea/tanulchristian.dev.iml" />
     </modules>
   </component>
 </project>

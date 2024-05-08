@@ -1,32 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Divider from "../components/Divider.astro";
+import Layout from "@layouts/Layout.astro";
 
-import HeroSection from "./index/_HeroSection.astro";
-import SkillsSection from "./index/_SkillsSection.astro";
-import ProjectsSection from "./index/_ProjectsSection.astro";
-import ClientsSection from "./index/_ClientsSection.astro";
-import ContactMeSection from "./index/_ContactMeSection.astro";
+import Hero from "./index/_Hero.astro";
 ---
 
 <Layout
   title="Home | Christian Tanul"
-  description="A developer with 6 years of experience and lots of passion">
-  <HeroSection />
-
-  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
-
-  <SkillsSection />
-
-  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
-
-  <ProjectsSection />
-
-  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
-
-  <ClientsSection />
-
-  <Divider class="hidden lg:mb-12 lg:flex lg:w-96" />
-
-  <ContactMeSection />
+  description="A developer with 6 years of experience and lots of passion"
+  keywords="web developer, front-end developer, full-stack developer, web designer, web development, web design, front-end development, full-stack development, web development services, web design services"
+  og_image="/images/og-image.jpg"
+>
+  <Hero class="my-12 sm:my-24 lg:my-36"/>
 </Layout>

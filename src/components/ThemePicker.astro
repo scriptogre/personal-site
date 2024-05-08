@@ -1,0 +1,65 @@
+---
+const { class: classList } = Astro.props;
+---
+<div class:list={[classList, "relative group"]}>
+
+  <button id="theme-picker-button" class="inline-flex justify-center items-center text-xl rounded-lg p-3 hover:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-50 hover:bg-neutral-400/10 duration-300"
+          type="button" onmousedown="if (this === document.activeElement) { event.preventDefault(); this.blur(); }">
+    <iconify-icon icon="ri:sun-line" class="dark:hidden" />
+    <iconify-icon icon="ri:moon-clear-line" class="hidden dark:block"/>
+  </button>
+
+  <fieldset id="theme-picker" class="invisible opacity-0 group-has-[button:focus]:visible group-has-[button:focus]:opacity-100 duration-150 absolute z-50 top-full right-0 bg-white dark:bg-dark-gradient bg-fixed border border-transparent dark:border-neutral-800/50 rounded-lg ring-1 ring-neutral-800/10 shadow overflow-hidden w-36 text-sm dark:ring-0 mt-4">
+
+    <label class="px-4 py-2 flex items-center cursor-pointer has-[:checked]:text-orange-700 dark:text-inherit hover:bg-neutral-50 dark:hover:bg-neutral-800">
+      <input name="theme" type="radio" value="light" class="hidden" autocomplete="off" />
+      <iconify-icon icon="ri:sun-line" class="text-lg me-2" />
+      Light
+    </label>
+
+    <label class="px-4 py-2 flex items-center has-[:checked]:text-amber-400 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800">
+      <input name="theme" type="radio" value="dark" class="hidden" autocomplete="off" />
+      <iconify-icon icon="ri:moon-clear-line" class="text-lg me-2" />
+      Dark
+    </label>
+
+    <label class="px-4 py-2 flex items-center has-[:checked]:text-orange-700 has-[:checked]:dark:text-amber-400 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800">
+      <input name="theme" type="radio" value="auto" class="hidden" autocomplete="off" checked />
+      <iconify-icon icon="ri:computer-line" class="text-lg me-2" />
+      System
+    </label>
+
+  </fieldset>
+</div>
+
+<script is:inline>
+  function setDarkMode(document, theme = null) {
+    theme = theme || localStorage.getItem('theme') || 'auto';
+
+    if (theme === 'auto') {
+      localStorage.removeItem('theme');
+      document.documentElement.classList.toggle('dark', window.matchMedia('(prefers-color-scheme: dark)').matches);
+    } else {
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      localStorage.setItem('theme', theme);
+    }
+  }
+
+  function initThemePicker() {
+    const themePicker = document.getElementById('theme-picker');
+    if (!themePicker) return;
+
+    const selectedTheme = localStorage.getItem('theme') || 'auto';
+    themePicker.querySelector('input[checked]').removeAttribute('checked');
+    themePicker.querySelector(`input[value="${selectedTheme}"]`).setAttribute('checked', '');
+
+    themePicker.addEventListener('change', (e) => {
+      setDarkMode(document, e.target.value);
+    });
+  }
+
+  setDarkMode(document)
+  document.addEventListener('astro:page-load', initThemePicker);
+  document.addEventListener('astro:before-swap', e => setDarkMode(e.newDocument));
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setDarkMode(document));
+</script>
