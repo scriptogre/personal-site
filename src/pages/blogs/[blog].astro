@@ -6,7 +6,7 @@ import moment from 'moment';
 import Layout from "@layouts/Layout.astro";
 import myImage from "@assets/images/me.webp";
 import { calculateReadingTime } from "../../utils.js";
-import SideNavItem from "@components/SideNav/SideNavItem.astro";
+import TableOfContents from "@components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const blogs = await getCollection('blogs');
@@ -21,57 +21,56 @@ export async function getStaticPaths() {
 
 const { blog } = Astro.props;
 const { Content: BlogContent, headings } = await blog.render();
-
-let result = [];
-let stack = [];
-
-headings.forEach(heading => {
-  const item = {
-    label: heading.text,
-    href: `#${heading.slug}`
-  };
-
-  const parent = stack[heading.depth - 2];
-  if (parent) {
-    if (!parent.children) {
-      parent.children = [];
-    }
-    parent.children.push(item);
-  } else {
-    result.push(item);
-  }
-
-  stack[heading.depth - 1] = item;
-});
 ---
 <Layout title={blog.data.title} description={blog.data.description} og_image={blog.data.image.src}>
+  <Fragment slot="after-open-graph-meta">
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content={new Date(blog.data.pubDate).toISOString()} />
+    <meta property="article:author" content="Christian Tanul" />
+  </Fragment>
 
-  <div class="flex items-start gap-12">
-    <div class="hidden lg:block mt-16 sticky top-24 bg-white dark:bg-dark-gradient bg-fixed max-w-80 w-full border border-neutral-800/10 dark:border-neutral-800/50 rounded-xl shadow shadow-red-800 dark:shadow-amber-500 p-6">
-      <span class="inline-flex items-center font-semibold">
-        <iconify-icon icon="oui:table-of-contents" class="text-orange-800 dark:text-amber-500 me-2.5"/>
-        Table of Contents
-      </span>
-      <ul class="flex flex-col flex-wrap gap-2 h-full mt-2">
-        {result.map(item => {return <SideNavItem item={item} collapsible={false} />})}
-      </ul>
+  <div class="flex items-start mt-4 sm:mt-8 lg:mt-16">
+
+    <!-- Desktop Left Side Menu -->
+    <div class="hidden lg:flex sticky top-24 flex-col pe-12">
+
+      <!-- Go Back Button -->
+      <a href="/" class="flex items-center justify-center gap-2 tracking-wider font-[500] py-3 px-4 rounded-lg hover:text-neutral-900 dark:hover:text-neutral-50 hover:bg-neutral-400/10 duration-200 mb-4">
+        <iconify-icon icon="bi:arrow-left" class="text-red-800 dark:text-amber-500" />
+        <span>Go Back</span>
+      </a>
+
+      <!-- Desktop Table of Contents -->
+      <TableOfContents {headings} />
+
     </div>
 
-    <article class="mx-auto max-w-2xl mt-8 sm:mt-16">
-      <h1 class="text-3xl sm:text-4xl font-semibold dark:text-neutral-200 mt-2 sm:mt-4">
+    <!-- Blog Content -->
+    <article class="mx-auto max-w-2xl">
+
+      <!-- Go Back Button -->
+      <a href="/" class="inline-flex lg:hidden items-center justify-center gap-2 tracking-wider font-[500] py-3 px-4 rounded-lg hover:text-neutral-900 dark:hover:text-neutral-50 hover:bg-neutral-400/10 duration-200 mb-4">
+        <iconify-icon icon="bi:arrow-left" class="text-red-800 dark:text-amber-500" />
+        <span>Go Back</span>
+      </a>
+
+      <!-- Blog Title -->
+      <h1 class="text-3xl sm:text-4xl font-semibold dark:text-neutral-200">
         {blog.data.title}
       </h1>
 
-      <h2 class="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 mt-4 sm:mt-8">
+      <!-- Blog Description -->
+      <h2 class="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 mt-2 sm:mt-4">
         {blog.data.description}
       </h2>
 
+      <!-- Blog Author, Reading Time, and Date -->
       <div class="flex items-center justify-between mt-4 sm:mt-8">
         <div class="inline-flex items-center">
           <Image src={myImage} alt="Christian Tanul" class="size-8 rounded-full sm:size-10 object-cover shadow" />
-          <div class="ms-3 sm:ms-4 flex flex-col">
-            <span class="mb-0.5 sm:mb-1 text-xs sm:text-sm">Christian Tanul</span>
-            <p class="text-xs sm:text-sm font-semibold">
+          <div class="ms-3 sm:ms-4 flex flex-col font-[500]">
+            <span class="mb-0.5 sm:mb-1 text-sm sm:text-base">Christian Tanul</span>
+            <p class="text-sm sm:text-base text-red-800 dark:text-amber-500">
               {calculateReadingTime(blog.body)} min read <span class="mx-1">•</span>
               {moment(blog.data.pubDate).format("MMM DD, YYYY")}
             </p>
@@ -79,11 +78,25 @@ headings.forEach(heading => {
         </div>
       </div>
 
-      <div class="my-4 sm:my-8 h-[1px] w-full bg-neutral-800/10 dark:bg-neutral-400/5" />
+      <!-- Divider -->
+      <div class="my-8 sm:my-8 h-[1px] w-full bg-neutral-800/10 dark:bg-neutral-400/5" />
 
-      <div class="mx-auto max-w-full prose prose-neutral dark:prose-invert dark:prose-p:text-neutral-300 prose-img:rounded-xl prose-headings:relative prose-headings:-mt-20 prose-headings:pt-20 prose-headings:-z-10">
+      <!-- Blog Content -->
+      <div class="max-w-full mx-auto prose prose-neutral dark:prose-invert dark:prose-p:text-neutral-300 prose-img:rounded-xl prose-headings:relative prose-headings:-mt-20 prose-headings:pt-20 prose-headings:-z-10 prose-pre:max-w-sm  prose-code:text-xs prose-code:sm:text-sm prose-pre:sm:max-w-none prose-pre:overflow-x-auto prose-hr:bg-neutral-800/10 prose-hr:dark:bg-neutral-400/5">
         <BlogContent slot="content" />
       </div>
     </article>
+
   </div>
+
+  <!-- Mobile Floating Toggle Button -->
+  <label class="lg:hidden peer/mobile-toc-label z-10 fixed cursor-pointer inline-grid place-items-center *:col-start-1 *:row-start-1 bottom-4 left-4 p-2 bg-neutral-50 dark:bg-dark-gradient-lighter bg-fixed border border-transparent dark:border-neutral-400/5 shadow-lg rounded-full">
+    <input type="checkbox" class="peer hidden" id="mobile-toc-toggle" />
+    <iconify-icon icon="carbon:table-of-contents" class="text-red-800 dark:text-amber-500 text-2xl peer-checked:invisible peer-checked:opacity-0 duration-200 rotate-180 peer-checked:rotate-90" />
+    <iconify-icon icon="material-symbols-light:close" class="text-red-800 dark:text-amber-500 text-3xl invisible opacity-0 peer-checked:visible peer-checked:opacity-100 duration-200 peer-checked:-rotate-90" />
+  </label>
+
+  <!-- Mobile Table of Contents -->
+  <TableOfContents class="lg:hidden fixed bottom-20 -left-full peer-has-[:checked]/mobile-toc-label:left-4 duration-200 max-h-[calc(100vh-10rem)]" {headings} />
+
 </Layout>

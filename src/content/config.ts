@@ -39,23 +39,33 @@ const linksCollection = defineCollection({
 
 const blogsCollection = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
-    image: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }),
+    image: image(),
+    imageAlt: z.string(),
     pubDate: z
       .string()
       .or(z.date())
       .transform((val) => new Date(val)),
+    isNew: z.boolean().default(false),
   })
 })
+
+const announcementsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    href: z.string(),
+    text: z.string(),
+    pubDate: z.string().or(z.date()).transform((val) => new Date(val)),
+  })
+})
+
 
 export const collections = {
   projects: projectsCollection,
   clients: clientsCollection,
   links: linksCollection,
   blogs: blogsCollection,
+  announcements: announcementsCollection,
 };

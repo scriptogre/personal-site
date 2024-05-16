@@ -39,25 +39,24 @@
 
 <form
   on:submit|preventDefault={submitForm}
-  class="relative flex min-h-full w-96 max-w-[512px] flex-col justify-center rounded-3xl border border-transparent dark:border-neutral-400/20 dark:bg-dark-gradient bg-fixed bg-neutral-50 p-8 text-start shadow shadow-red-800 dark:shadow-amber-500">
+  class="max-w-sm relative flex justify-center w-full flex-col rounded-3xl border border-transparent has-[input:valid]:border-red-800 has-[input:valid]:shadow-red-800 dark:has-[input:valid]:border-amber-500 dark:has-[input:valid]:shadow-amber-500 dark:bg-dark-gradient-lighter bg-fixed bg-neutral-50 p-8 text-start shadow-lg duration-500">
   {#if isSubmitting}
     <div
       id="overlay"
       class="absolute inset-0 z-50 flex items-center justify-center rounded-3xl backdrop-blur">
-      <span class="animate-pulse text-xl">Sending...</span>
+      <span class="animate-pulse text-xl text-red-800 dark:text-amber-500">Sending...</span>
     </div>
   {/if}
 
-  <h1 class="mb-3 text-2xl sm:text-3xl font-semibold">Contact Me</h1>
-  <p class="mb-6 text-sm sm:text-base">Feel free to reach out to me for any queries or feedback.</p>
+  <h1 class="text-xs sm:text-sm font-['Sora_Variable'] font-semibold text-red-800 dark:text-amber-500">Contact</h1>
+  <p class="mt-1.5 lg:mt-3 font-semibold text-2xl sm:text-3xl">Get in touch</p>
+  <p class="mt-1.5 lg:mt-3 mb-6 text-sm sm:text-base">I'm always open to new opportunities and collaborations. Feel free to reach out to me!</p>
 
   <!-- Display submission status to the user -->
-  {#if isSubmitting}
-    <p class="mb-6">Sending message...</p>
-  {:else if isSuccess}
-    <p class="mb-6 text-green-600">Message sent successfully!</p>
+  {#if isSuccess}
+    <p class="mb-6 font-[500] text-red-800 dark:text-amber-500">Message sent successfully!</p>
   {:else if errorMessage}
-    <p class="mb-6 text-red-600">{errorMessage}</p>
+    <p class="mb-6 font-[500] text-red-800 dark:text-red-500">{errorMessage}</p>
   {/if}
 
   <input
@@ -65,25 +64,27 @@
     name="name"
     placeholder="Name"
     bind:value={name}
-    class="mb-3 w-full rounded-lg border border-neutral-800/10 dark:border-neutral-400/5 bg-transparent px-4 py-2 duration-300 outline-1 focus:border-transparent focus:outline-red-800 dark:focus:outline-amber-500 outline-none"
+    class="mb-3 w-full rounded-lg border border-neutral-800/10 dark:border-neutral-400/5 bg-transparent px-4 py-2 duration-200 outline-1 focus:border-transparent focus:outline-red-800/50 dark:focus:outline-amber-500/50 outline-none"
     required />
   <input
     type="email"
     name="email"
     placeholder="Email"
     bind:value={email}
-    class="mb-3 w-full rounded-lg border border-neutral-800/10 dark:border-neutral-400/5 bg-transparent px-4 py-2 duration-300 outline-1 focus:border-transparent focus:outline-red-800 dark:focus:outline-amber-500 outline-none"
+    class="mb-3 w-full rounded-lg border border-neutral-800/10 dark:border-neutral-400/5 bg-transparent px-4 py-2 duration-200 outline-1 focus:border-transparent focus:outline-red-800/50 dark:focus:outline-amber-500/50 outline-none"
     required />
   <textarea
     name="message"
     placeholder="Message"
     bind:value={message}
-    class="mb-6 w-full rounded-lg border border-neutral-800/10 dark:border-neutral-400/5 bg-transparent px-4 py-2 duration-300 outline-1 focus:border-transparent focus:outline-red-800 dark:focus:outline-amber-500 outline-none"
+    class="mb-6 w-full rounded-lg border border-neutral-800/10 dark:border-neutral-400/5 bg-transparent px-4 py-2 duration-200 outline-1 focus:border-transparent focus:outline-red-800/50 dark:focus:outline-amber-500/50 outline-none"
     required></textarea>
+
   <button
     type="submit"
-    class="w-full rounded-lg bg-gradient-to-br text-white/95 dark:text-neutral-800 from-red-800 to-orange-700 dark:from-amber-500 dark:to-orange-400 py-2 px-4 font-semibold text-neutral-800 font-['Sora_Variable'] border border-red-800 dark:border-transparent duration-300 outline-1 focus:outline-amber-500 outline-none"
+    class="w-full rounded-lg bg-gradient-to-br text-white/95 dark:text-neutral-800 from-red-800 to-red-700 dark:from-amber-500 dark:to-orange-400 py-2 px-4 font-semibold text-neutral-800 font-['Sora_Variable'] border border-red-800 dark:border-transparent duration-200 outline-1 focus:outline-amber-500 outline-none"
     disabled={isSubmitting}>
     Send
   </button>
+
 </form>

@@ -1,0 +1,318 @@
+---
+title: 'Will JinjaX Replace Django Templates?'
+description: 'The pain of {% include %}, and the search for clean composition.'
+image: './assets/will_jinjax_replace_django_templates/dte-vs-jinjax.webp'
+imageAlt: 'Django templates vs JinjaX'
+pubDate: '2024-05-12 21:00'
+isNew: true
+---
+import { Image } from 'astro:assets';
+
+import SkipButton from '@components/blogs/SkipButton.astro';
+
+import djangonautCrying from './assets/will_jinjax_replace_django_templates/djangonaut-crying.webp';
+import reactZoomies from './assets/will_jinjax_replace_django_templates/react-zoomies.webp';
+import dteVsJinjaX from './assets/will_jinjax_replace_django_templates/dte-vs-jinjax.webp';
+import pythonVsJavascript from './assets/will_jinjax_replace_django_templates/python-vs-javascript.webp';
+import slippersIssue from './assets/will_jinjax_replace_django_templates/slippers-issue.webp';
+import djangoTemplatePartialsPR from './assets/will_jinjax_replace_django_templates/django-template-partials-pr.webp';
+import functionalChatbotShowcase from './assets/will_jinjax_replace_django_templates/functional-chatbot-showcase.webp';
+
+<p className={"my-8 text-sm"}><SkipButton href="#jinjax" />, just in case you want to skip the introduction</p>
+
+
+## Problem
+**I never loved Django templates**
+
+There, I said it.
+
+Before you call it a skill issue (though you might be right), let me explain.
+
+You know that feeling you get from a beautiful piece of Python code?
+
+When you look at it and think:
+
+```python
+class HtmxRequiredMixin:
+    def get(self, request):
+        if not request.headers.get("HX-Request"):
+            return HttpResponseBadRequest("Should be an htmx view, fella.")
+        return super().get(request)
+```
+
+> damn, that's readable code.
+
+Be honest. Have you ever felt that way about a Django template?
+
+...
+
+I haven't.
+
+<p className={"text-2xl"}>**Why?**</p>
+
+<div style="max-width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/dQuXnEyFlMsrk0v0fG" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed rounded-lg"></iframe></div>
+
+I'm a baboon that can't structure his templates properly.
+
+However, I also believe Django templates can become a bit too verbose.
+
+It was always difficult for me to scan through them - I'd scroll up and down, left and right. My mouse would get tired.
+
+The biggest culprit was...
+
+### The `{% include %}` tag
+
+While zoomies from the JavaScript community can happily write:
+<Image src={reactZoomies} alt="React Zoomies" class="w-56" />
+```jsx
+<Calendar date="2015-06-19" {user} {events} {settings} />
+```
+
+We need to write this, just for some simple composition:
+<Image src={djangonautCrying} alt="Djangonaut Crying" class="w-56" />
+```html
+{% include "my_app_name/partials/_calendar.html" with date="2015-06-19", user=user_instance, events=events_list, settings=settings_dict %}
+```
+
+1. A keyword: `include`
+2. A path: `path/to/the/template`
+3. Another keyword: `with` *(just so you can pass)*
+4. Arguments: as `key=value` pairs, *which are also separated by `,` commas*
+5. [**AND ARGUMENTS CAN'T EVEN BE SPANNED OVER MULTIPLE LINES, SINCE 2008**](https://code.djangoproject.com/ticket/8652)
+
+**It's not fair.**
+
+---
+
+## Search
+
+I started looking for alternatives, and I found some cool libraries:
+
+1. ### [`#slippers`](https://github.com/mixxorz/slippers)
+```html
+{% #calendar date="2015-06-19" user=user_instance events=events_list settings=settings_dict %}
+{% /calendar %}
+```
+It seemed promising, but PyCharm would go crazy due to it's syntax.
+
+I opened [an issue about it](https://github.com/mixxorz/slippers/issues/27), with an attempt to fix it.
+
+<Image src={slippersIssue} alt="Slippers issue" />
+
+But I eventually gave up.
+
+---
+
+2. ### [`django-components`](https://github.com/EmilStenstrom/django-components)
+```html
+{% component "calendar" date="2015-06-19" user=user_instance events=events_list settings=settings_dict %}
+{% endcomponent %}
+```
+
+This one had the most community support, and it also included named slots, which was neat.
+
+```html
+{% component "calendar" date="2015-06-19" user=user_instance events=events_list settings=settings_dict %}
+  {% slot "header" %}
+      <h1>Calendar</h1>
+  {% endslot %}
+  {% slot "footer" %}
+      <p>Footer</p>
+  {% endslot %}
+{% endcomponent %}
+```
+
+However, it was still a bit verbose :(.
+
+---
+
+3. ### [`django-template-partials`](https://github.com/carltongibson/django-template-partials/)
+```html
+{% partialdef calendar date="2015-06-19" user=user_instance events=events_list settings=settings_dict %}
+{% endpartialdef %}
+```
+
+I especially liked this one.
+
+It integrated with the template loader, enabling you to do this in your views:
+```python
+return render(request, 'my_template.html#partial_name')
+```
+This was similar to [`django-render-block`](https://github.com/clokep/django-render-block), another cool library for htmx enthusiasts.
+
+Once again, [IDE compatibility was an issue](https://github.com/carltongibson/django-template-partials/issues/12). However, a [PR](https://github.com/carltongibson/django-template-partials/pull/18) from ~~ChatGPT~~ yours truly, fixed it.
+
+<Image src={djangoTemplatePartialsPR} alt="Django Template Partials PR" />
+
+Still... it wasn't perfect.
+
+The Python code was so readable. Why couldn't templates be the same?
+
+---
+
+4. ### JSX
+
+Fast forward to 2024, and I started working with [Astro](https://astro.build/) (it's awesome, by the way).
+
+It uses JSX syntax. I loved JSX's method of handling composition. It was clean and readable.
+
+```jsx
+<Calendar date="2015-06-19" {user} {events} {settings}>
+  <h1 slot="header">Calendar</h1>
+  <p slot="footer">Footer</p>
+</Calendar>
+```
+
+If you can't beat them, join them, right? I wanted to join the zoomies. <Image src={reactZoomies} alt="React Zoomies" class="inline w-24" />
+
+Still, JavaScript was insanely painful to read as a Python developer. So then it hit me:
+
+<Image src={pythonVsJavascript} alt="Python has clean syntax, but JavaScript has clean templates" />
+
+Do you see where I'm getting at?
+
+---
+
+## Solution
+
+### JinjaX
+
+<Image src={dteVsJinjaX} alt="Django templates vs JinjaX" />
+
+That's how I arrived at [JinjaX](https://github.com/jpsca/jinjax).
+
+Refer to the [official guide](https://jinjax.scaletti.dev/guide/) for setup & basic usage. It includes a section on Django.
+
+However, I'd like to show you why I personally love it.
+
+### Clean Composition
+
+I use HTMX and TailwindCSS extensively in my projects.
+
+However, all those `hx-*` attributes and TailwindCSS classes can make the templates a bit noisy.
+
+**`hx-*` Attributes**
+
+Consider this big block inside my `index.html`:
+
+```html
+<!-- Toggles -->
+<div class="absolute right-5 top-4 flex items-center gap-2">
+
+    <!-- Debug Mode Toggle -->
+    <label hx-post="/toggle-debug-mode"
+           hx-swap="outerHTML"
+           hx-trigger="click, toggleDebugMode from:body"
+           id="debug-mode-toggle"
+           class="group inline-flex p-1 text-lg cursor-pointer text-neutral-500 hover:text-neutral-600 has-[:checked]:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:has-[:checked]:text-neutral-200 duration-300"
+    >
+      <input name="is_debug_mode" type="checkbox" class="hidden" autocomplete="off" />
+
+      <iconify-icon icon="pixelarticons:debug-off" class="group-has-[:checked]:hidden"></iconify-icon>
+      <iconify-icon icon="pixelarticons:debug" class="hidden group-has-[:checked]:block"></iconify-icon>
+    </label>
+
+    <!-- Dark Mode Toggle -->
+    <label hx-post="/toggle-dark-mode"
+           hx-swap="outerHTML"
+           hx-trigger="click, toggleDarkMode from:body"
+           id="dark-mode-toggle"
+           class="group inline-flex p-1 text-lg cursor-pointer text-neutral-500 hover:text-neutral-600 has-[:checked]:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:has-[:checked]:text-neutral-200 duration-300"
+    >
+        <input name="is_dark_mode" type="checkbox" class="hidden" autocomplete="off" />
+
+        <iconify-icon icon="ri:moon-clear-line" class="hidden group-has-[:checked]:block"></iconify-icon>
+        <iconify-icon icon="ri:sun-line" class="group-has-[:checked]:hidden"></iconify-icon>
+    </label>
+
+    <!-- Full Screen Toggle -->
+    <label hx-post="/toggle-fullscreen"
+           hx-swap="outerHTML"
+           hx-trigger="click, toggleFullscreen from:body"
+           id="full-screen-toggle"
+           class="group inline-flex p-1 text-lg cursor-pointer text-neutral-500 hover:text-neutral-600 has-[:checked]:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 dark:has-[:checked]:text-neutral-200 duration-300"
+    >
+        <input name="is_fullscreen" type="checkbox" class="hidden" autocomplete="off" />
+
+        <iconify-icon icon="majesticons:maximize" class="group-has-[:checked]:hidden"></iconify-icon>
+        <iconify-icon icon="majesticons:minimize" class="hidden group-has-[:checked]:block"></iconify-icon>
+    </label>
+
+</div>
+
+```
+
+With JinjaX, I keep the `hx-*` attributes at the surface, while abstracting the rest:
+
+```html
+<!-- Toggles -->
+<div class="absolute right-5 top-4 flex items-center gap-2">
+
+    <DebugModeToggle hx-post="/toggle-debug-mode"
+                     hx-swap="outerHTML"
+                     hx-trigger="click, toggleDebugMode from:body" />
+
+    <DarkModeToggle hx-post="/toggle-dark-mode"
+                    hx-swap="outerHTML"
+                    hx-trigger="click, toggleDarkMode from:body" />
+
+    <FullscreenToggle hx-post="/toggle-fullscreen"
+                      hx-swap="outerHTML"
+                      hx-trigger="click, toggleFullscreen from:body" />
+
+</div>
+```
+
+It's makes glancing at the template much easier for me.
+
+> But... This violates the whole point of Locality of Behaviour (LoB)!
+
+Anything in excess is harmful. I'd rather have a clean template, while applying LoB only with the important parts.
+Everything is a trade-off.
+
+> Why do you have hx-* attributes on your dark mode toggle? Are you crazy?
+
+Yes, I am. It's part of a [presentation](https://pretalx.evolutio.pt/djangocon-europe-2024/talk/ZGBQ9K/)
+I'll be holding at DjangoCon Europe 2024, where I give a LLM control over the UI.
+
+<Image src={functionalChatbotShowcase} alt="Functional Chatbot Showcase" />
+
+**TailwindCSS Classes**
+
+Sometimes, you might also need to leave some TailwindCSS classes at the surface, for the sake of clarity.
+
+I usually do this for `fixed` positioning:
+
+```html
+<TableOfContents class="fixed bottom-4 left-4 z-10" />
+```
+
+```html
+<TopNav class="fixed top-0 z-10" />
+```
+
+Passing extra attributes like this is possible through the [`attrs`](https://jinjax.scaletti.dev/guide/extra/) object.
+
+With JinjaX, I can maintain clean templates, while still having a good idea of what's going on inside them.
+
+## Conclusion
+
+I think JinjaX is a step in the right direction.
+
+I also think we as developers should not be afraid to jump ships, and try out new tools.
+
+Seeing their good, bad, and ugly helps you appreciate what you have,
+find new practices you can adopt, and even bring back some cool ideas to your beloved Django.
+
+[Astro](https://astro.build/) might be a good place to start. It's a nice tool when Django might be overkill for the
+task (e.g. a presentation website).
+
+**Acknowledgements**
+
+I'd also like to include a special thanks to:
+1. [mixxorz](https://github.com/mixxorz), the creator of [`#slippers`](https://github.com/mixxorz/slippers)
+2. [Emil Stenström](https://github.com/EmilStenstrom), the creator of [`django-components`](https://github.com/EmilStenstrom/django-components)
+3. [Carlton Gibson](https://github.com/carltongibson), the creator of [`django-template-partials`](https://github.com/carltongibson/django-template-partials/)
+4. [Juan-Pablo Scaletti](https://github.com/jpsca), the creator of [JinjaX](https://github.com/jpsca/jinjax)
+
+It's through their unappreciated work that we can build upon and create better tools for the community.

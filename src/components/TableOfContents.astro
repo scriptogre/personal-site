@@ -1,0 +1,71 @@
+---
+import NestedMenuItem from "./NestedMenuItem.astro";
+
+interface Props {
+  class?: string
+  headings: {
+    text: string;
+    depth: number;
+    slug: string;
+  }[];
+}
+
+const { class: classList, headings = [] } = Astro.props;
+
+// Find the minimum depth to adjust indexing dynamically
+const baseDepth = Math.min(...headings.map(h => h.depth)) - 1;
+
+// Initialize dynamic arrays
+let counter = [];
+let stack = [];
+let result = [];
+
+headings.forEach(heading => {
+  const depth = heading.depth - baseDepth;  // Adjust depth relative to base
+
+  // Initialize or increment the counter for the current depth
+  counter[depth] = (counter[depth] || 0) + 1;
+
+  // Ensure we don't join leading zeros
+  let numberPrefix = counter.slice(0, depth + 1).filter(num => num > 0).join('.');
+
+  // Create item for current heading with appropriate numbering and format
+  let item = {
+    title: heading.text,
+    href: `#${heading.slug}`,
+    label: numberPrefix.length > 0 ? `<span class="text-sm">${numberPrefix}.</span> ${heading.text}` : heading.text,
+    children: []
+  };
+
+  // Append to the parent if not at root level
+  if (depth > 1) {
+    let parent = stack[depth - 1];
+    if (parent) {
+      parent.children = parent.children || [];
+      parent.children.push(item);
+    } else {
+      console.error("Missing parent for:", heading.text, "at depth", depth);
+    }
+  } else {
+    result.push(item);
+  }
+
+  // Update stack for the current depth
+  stack[depth] = item;
+  // Reset counters and stack beyond current depth
+  counter.fill(0, depth + 1);
+  stack.fill(undefined, depth + 1);
+});
+---
+<div class:list={[classList, "bg-white dark:bg-dark-gradient-lighter bg-fixed min-w-72 max-w-80 w-full rounded-xl shadow border border-transparent dark:border-neutral-400/5 overflow-auto"]}>
+  <!-- TOC Header -->
+  <span class="z-10 top-0 bg-white pt-6 px-6 pb-3 dark:bg-dark-gradient-lighter bg-fixed w-full inline-flex items-center font-[500] text-xl">
+    <iconify-icon icon="carbon:table-of-contents" class="text-orange-800 dark:text-amber-500 translate-y-[1px] me-4"/>
+    Table of Contents
+  </span>
+
+  <!-- TOC Body -->
+  <ul class="flex flex-col gap-2 h-min pt-3 px-6 pb-6">
+    {result.map(item => {return <NestedMenuItem item={item} />})}
+  </ul>
+</div>
